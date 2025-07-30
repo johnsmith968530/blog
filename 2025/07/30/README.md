@@ -1,7 +1,7 @@
 ```text
 $Source: /home/x/Dropbox/2/src/blog/2025/07/30/RCS/README.md,v $
-$Date: 2025/07/30 13:16:20 $
-$Revision: 1.4 $
+$Date: 2025/07/30 13:21:08 $
+$Revision: 1.6 $
 ```
 
 * So, this is my first dated entry to my online blog. I'm an old-school Linux guy at heart, so I write snippets like
@@ -16,6 +16,7 @@ so there's a lot of stuff that's convenient for me but might make no sense to an
 * Oh, and yeah: I use a combination of `rcs` and `git` in my workflow, so you'll see RCS headers. I like RCS because:
   * It can automatically write version numbers, which I don't have with git.
   * Many times in my coding, I'll want to use different versions of, like, four different files, and that's easy to do with RCS. If I tried to do that with git, I'd have to deal with isolating four different files from four different commits, some of which may be in branches that were deleted long ago. I like having an orthogonal versioning system.
+    * For the version control systems to be truly orthogonal, the RCS files (files ending in `,v`) *can't* be checked into Git, or else the RCS versions will be affected by Git operations. This means that `.gitignore` should auto-exclude RCS files.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
