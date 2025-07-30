@@ -1,6 +1,7 @@
+```text
 $Source: /home/x/Dropbox/2/src/blog/RCS/README.md,v $
-$Date: 2025/07/30 15:15:02 $
-$Revision: 1.3 $
+$Date: 2025/07/30 15:16:07 $
+$Revision: 1.4 $
 ```
 
 # AI-Ready Blog
@@ -41,3 +42,4 @@ For the AI chat that inspired this README, see: https://github.com/johnsmith9685
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
+```
