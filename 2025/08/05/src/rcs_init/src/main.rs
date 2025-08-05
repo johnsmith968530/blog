@@ -31,6 +31,7 @@ fn get_description(file_path: &Path) -> Result<String> {
     }
     
     let hostname = hostname::get()?.to_string_lossy().into_owned();
+    let hostname = hostname.strip_suffix(".local").unwrap_or(&hostname).to_string();
     Ok(format!("{}:{}", hostname, abs_str))
 }
 
