@@ -1,7 +1,7 @@
 ```text
 $Source: /home/x/Dropbox/2/src/blog/2025/08/04/RCS/README.md,v $
-$Date: 2025/08/05 04:01:39 $
-$Revision: 1.4 $
+$Date: 2025/08/05 04:06:35 $
+$Revision: 1.5 $
 ```
 
 # h353
@@ -31,6 +31,9 @@ as recommended in the output of the previous command.
 * Installed [KeepassXC](https://keepassxc.org/) 2.7.10-arm64 from the app I downloaded from the website.
 * Installed [neovim](https://neovim.io/) 0.11.3 via `brew install neovim`.
 * Installed [borg](https://www.borgbackup.org/) version 1.4.1 via `brew install borgbackup`.
+* Installed [GnuPG](https://www.gnupg.org/) version 2.4.8 via `brew install gnupg`.
+  * Note that it's not necessary to use `brew intall gnupg2`, as mentioned here:
+    * https://stackoverflow.com/questions/54895263/how-to-install-gpg2-via-homebrew
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
