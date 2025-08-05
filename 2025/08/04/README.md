@@ -1,7 +1,7 @@
 ```text
 $Source: /home/x/Dropbox/2/src/blog/2025/08/04/RCS/README.md,v $
-$Date: 2025/08/05 04:06:35 $
-$Revision: 1.5 $
+$Date: 2025/08/05 05:10:23 $
+$Revision: 1.9 $
 ```
 
 # h353
@@ -34,6 +34,22 @@ as recommended in the output of the previous command.
 * Installed [GnuPG](https://www.gnupg.org/) version 2.4.8 via `brew install gnupg`.
   * Note that it's not necessary to use `brew intall gnupg2`, as mentioned here:
     * https://stackoverflow.com/questions/54895263/how-to-install-gpg2-via-homebrew
+* Installed [RCS](https://www.gnu.org/software/rcs/) via `brew install rcs`.
+* Installed [Anki](https://apps.ankiweb.net/) 25.07.5 via the app I downloaded from the website.
+* Installed [Node.js](https://nodejs.org/en/download):
+```zsh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
+  * After restarting the shell, I did `nvm install 22`, which installed the latest LTS version.
+* Installed [Rust](https://www.rust-lang.org/tools/install) via:
+```zsh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+  * I chose the default installation.
+* Installed [GHCup (Haskell)](https://www.haskell.org/ghcup/install/):
+```zsh
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
