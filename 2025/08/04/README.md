@@ -1,7 +1,7 @@
 ```text
 $Source: /home/x/Dropbox/2/src/blog/2025/08/04/RCS/README.md,v $
-$Date: 2025/08/05 05:14:29 $
-$Revision: 1.10 $
+$Date: 2025/08/05 05:31:08 $
+$Revision: 1.11 $
 ```
 
 # h353
@@ -45,6 +45,8 @@ as recommended in the output of the previous command.
 * Installed [GHCup (Haskell)](https://www.haskell.org/ghcup/install/):
   * `curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh`
   * I chose defaults for everything.
+* Installed the [Claude](https://claude.ai/download) app from the website.
+* Installed the [ChatGPT](https://chatgpt.com/download/) app from the website.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
