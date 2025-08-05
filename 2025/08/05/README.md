@@ -1,11 +1,12 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/05/RCS/README.md,v $
-$Date: 2025/08/05 14:27:57 $
-$Revision: 1.6 $
+$Date: 2025/08/05 14:31:33 $
+$Revision: 1.7 $
 ```
 
 # h353 setup
 * Continuing to set up my [new Macbook Air](https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/04#h353). It's been a while since I've used a Mac.
+* I uploaded my [GnuPG public key](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/05/src/gnupg2-public-key-1C259584204ECDA913257A0BE718A5BD2F23B1D7.asc).
 * I had a problem getting GnuPG to sign my git commits:
 ```
 % git commit -m "Add my public key"
