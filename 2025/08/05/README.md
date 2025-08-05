@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/05/RCS/README.md,v $
-$Date: 2025/08/05 18:27:15 $
-$Revision: 1.11 $
+$Date: 2025/08/05 20:57:00 $
+$Revision: 1.13 $
 ```
 
 # h353 setup
@@ -33,6 +33,8 @@ ce34b8679409f40fa902e026f2fa9cbd47f430b7
 
 % eval "$(git cat-file blob ce34b8679409f40fa902e026f2fa9cbd47f430b7)"
 ```
+* Installed `ssdeep` 2.14.1 via `brew install ssdeep`.
+* Installed Slack, Discord, and Google Chrome from their respective websites.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
