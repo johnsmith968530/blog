@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/05/RCS/README.md,v $
-$Date: 2025/08/05 14:24:47 $
-$Revision: 1.5 $
+$Date: 2025/08/05 14:27:57 $
+$Revision: 1.6 $
 ```
 
 # h353 setup
@@ -21,6 +21,7 @@ in my [`~/.gnupg/gpg-agent.conf`](https://github.com/johnsmith968530/blog/blob/h
   * `sudo mkdir /usr/local/bin && sudo chown x /usr/local/bin`
   * All my dev machines are one-person setups, so that's why I set the owner of `/usr/local/bin` to myself (`x`).
 * I tweaked my old [`rcs_init`](https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/05/src/rcs_init) tool to work on MacOS X as well as Linux.
+* Same for my old [`stardate`](https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/05/src/stardate) tool.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
