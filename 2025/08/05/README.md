@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/05/RCS/README.md,v $
-$Date: 2025/08/05 20:57:00 $
-$Revision: 1.13 $
+$Date: 2025/08/05 21:57:33 $
+$Revision: 1.16 $
 ```
 
 # h353 setup
@@ -35,6 +35,18 @@ ce34b8679409f40fa902e026f2fa9cbd47f430b7
 ```
 * Installed `ssdeep` 2.14.1 via `brew install ssdeep`.
 * Installed Slack, Discord, and Google Chrome from their respective websites.
+* Installed `ffmpeg` 7.1.1_3 via `brew install ffmpeg`.
+* Redis
+  * https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/homebrew/
+  * `brew tap redis/redis`
+  * `brew install --cask redis`
+  * `cd /opt/homebrew/etc`
+  * `rcs_init redis.conf`
+  * `redis-server $(brew --prefix)/etc/redis.conf`
+    * "Note: Because Redis is installed using a Homebrew cask with the brew tap command, it will not be integrated with the brew services command."
+* Ollama
+  * Installed Ollama 0.11.0 using the app from the website.
+  * Downloaded the `gpt-oss:20b` model. It seems quite good, at first glance.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
