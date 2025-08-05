@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/05/RCS/README.md,v $
-$Date: 2025/08/05 17:23:19 $
-$Revision: 1.9 $
+$Date: 2025/08/05 17:58:08 $
+$Revision: 1.10 $
 ```
 
 # h353 setup
@@ -25,6 +25,13 @@ in my [`~/.gnupg/gpg-agent.conf`](https://github.com/johnsmith968530/blog/blob/h
 * Same for my old [`stardate`](https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/05/src/stardate) tool.
 * Same for my old [`taskmaster`](https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/05/src/taskmaster) tool.
 * Installed [VideoLAN VLC 3.0.21](https://get.videolan.org/vlc/3.0.21/macosx/vlc-3.0.21-arm64.dmg) and [Zoom Workplace for Mac 6.5.7](https://zoom.us/download#room_client) from the respective websites.
+* I found an interesting way of referencing git objects that won't change if the underlying filesystem or git branch changes:
+```zsh
+% git hash-object mkdircd.zsh
+ce34b8679409f40fa902e026f2fa9cbd47f430b7
+
+% eval "$(git cat-file blob ce34b8679409f40fa902e026f2fa9cbd47f430b7)"
+```
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
