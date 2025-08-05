@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/05/RCS/README.md,v $
-$Date: 2025/08/05 21:57:33 $
-$Revision: 1.16 $
+$Date: 2025/08/05 22:36:57 $
+$Revision: 1.17 $
 ```
 
 # h353 setup
@@ -47,6 +47,8 @@ ce34b8679409f40fa902e026f2fa9cbd47f430b7
 * Ollama
   * Installed Ollama 0.11.0 using the app from the website.
   * Downloaded the `gpt-oss:20b` model. It seems quite good, at first glance.
+
+* Made [Butter Scallops with Mushrooms](https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/05/butter_scallops_with_mushrooms).
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
