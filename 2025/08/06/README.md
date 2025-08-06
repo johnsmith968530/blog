@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/RCS/README.md,v $
-$Date: 2025/08/06 21:34:06 $
-$Revision: 1.8 $
+$Date: 2025/08/06 23:14:22 $
+$Revision: 1.9 $
 ```
 
 # More h353 Setup
@@ -46,6 +46,9 @@ tmp_file_keys prependtopathset.zsh zsh prependtopathset
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stringstack.sh
 * Here's the corresponding "stardate stack", which works along similar lines.
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stardatestack.sh
+* Installed [SBCL](https://www.sbcl.org/) 2.5.7 with `brew install sbcl`.
+* Added a way of getting and evaluating git blobs from Lisp
+  * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/getgitblobbyhash.lisp
 
 # Printable ruler
 * https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/06/src/printable-ruler.html
