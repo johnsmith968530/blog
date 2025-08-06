@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/RCS/README.md,v $
-$Date: 2025/08/06 17:31:11 $
-$Revision: 1.4 $
+$Date: 2025/08/06 18:00:21 $
+$Revision: 1.5 $
 ```
 
 # More h353 Setup
@@ -23,6 +23,8 @@ envy global set git hash markdown github $(git hash-object \
   "`envy global get blog root`/2025/07/30/src/github_markdown_template.md")
 envy global set git hash gitignore rust $(git hash-object \
   "`envy global get blog root`/2025/08/05/src/rcs_init/.gitignore")
+envy global set git hash gitignore rcs $(git hash-object \
+  "`envy global get blog root`/.gitignore")
 ```
 * I have an implementation of a "string stack" I built on top of Redis, which I've tweaked to work with MacOS.
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stringstack.sh
