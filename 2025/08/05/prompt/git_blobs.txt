@@ -1,0 +1,1 @@
+I've heard git stores files as blobs named after some cryptographic hash of the contents. Is there a command I can use that tells me what the git hash of a file is? And if I have the git hash, can I `cat` the contents using a git command?
