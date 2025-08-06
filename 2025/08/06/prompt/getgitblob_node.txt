@@ -1,0 +1,1 @@
+Let's say I have some Node.js code that I can see from `git cat-file blob <some-hash>`. Can you provide code for Node.js that will eval this code, perhaps by spawning a shell command and getting the output? I remember there are two kinds of module systems in JavaScript; use the newer system.

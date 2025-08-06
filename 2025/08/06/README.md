@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/RCS/README.md,v $
-$Date: 2025/08/06 23:20:53 $
-$Revision: 1.10 $
+$Date: 2025/08/06 23:58:36 $
+$Revision: 1.11 $
 ```
 
 # More h353 Setup
@@ -41,6 +41,7 @@ tmp_file_keys getgitblobbykey.sh bash getgitblobbykey
 tmp_file_keys redis-stringstack.sh bash redis-stringstack
 tmp_file_keys redis-stardatestack.sh bash redis-stardatestack
 tmp_file_keys prependtopathset.zsh zsh prependtopathset
+tmp_file_keys nodejs_template.txt javascript template
 ```
 * I have an implementation of a "string stack" I built on top of Redis, which I've tweaked to work with MacOS.
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stringstack.sh
@@ -51,6 +52,10 @@ tmp_file_keys prependtopathset.zsh zsh prependtopathset
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/getgitblobbyhash.lisp
   * To make it, I just tweaked the output of Claude Sonnet 4.
     * The prompt: https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/prompt/getgitblob_lisp.txt
+* Added a way of getting and evaluating git blobs from Node.js
+  * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/getgitblobbyhash.js
+  * To make it, I just tweaked the output of Claude Sonnet 4.
+    * The prompt: https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/prompt/getgitblob_node.txt
 
 # Printable ruler
 * https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/06/src/printable-ruler.html
