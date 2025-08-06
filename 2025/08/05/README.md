@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/05/RCS/README.md,v $
-$Date: 2025/08/05 22:38:31 $
-$Revision: 1.18 $
+$Date: 2025/08/06 03:16:37 $
+$Revision: 1.19 $
 ```
 
 # h353 setup
@@ -47,6 +47,8 @@ ce34b8679409f40fa902e026f2fa9cbd47f430b7
 * Ollama
   * Installed Ollama 0.11.0 using the app from the website.
   * Downloaded the `gpt-oss:20b` model. It seems quite good, at first glance.
+  * I tried `gpt-oss:120b`, but the app seemed to take forever doing nothing. I guess 32 GB unified memory won't cut it.
+* Installed [OpenSCAD](https://openscad.org/downloads.html) 21.01 from the website.
 
 * Made [Butter Scallops with Mushrooms](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/05/butter_scallops_with_mushrooms.md).
 
