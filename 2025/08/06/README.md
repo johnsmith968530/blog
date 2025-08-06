@@ -25,6 +25,10 @@ envy global set git hash gitignore rust $(git hash-object \
   "`envy global get blog root`/2025/08/05/src/rcs_init/.gitignore")
 envy global set git hash gitignore rcs $(git hash-object \
   "`envy global get blog root`/.gitignore")
+envy global set git hash bash template $(git hash-object \
+  "`envy global get blog root`/2025/08/06/src/bash_template.txt")
+envy global set git hash zsh template $(git hash-object \
+  "`envy global get blog root`/2025/08/06/src/zsh_template.txt")
 ```
 * I have an implementation of a "string stack" I built on top of Redis, which I've tweaked to work with MacOS.
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stringstack.sh
