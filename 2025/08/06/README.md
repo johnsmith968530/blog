@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/RCS/README.md,v $
-$Date: 2025/08/06 21:26:43 $
-$Revision: 1.7 $
+$Date: 2025/08/06 21:34:06 $
+$Revision: 1.8 $
 ```
 
 # More h353 Setup
@@ -44,6 +44,8 @@ tmp_file_keys prependtopathset.zsh zsh prependtopathset
 ```
 * I have an implementation of a "string stack" I built on top of Redis, which I've tweaked to work with MacOS.
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stringstack.sh
+* Here's the corresponding "stardate stack", which works along similar lines.
+  * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stardatestack.sh
 
 # Printable ruler
 * https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/06/src/printable-ruler.html
