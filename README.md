@@ -14,6 +14,10 @@ The blog embraces a philosophy of temporal awareness and contextual identity:
 
 - **Branch Structure**: Uses `here-and-now` as the default branch name instead of traditional `master` or `main`, reflecting the present-moment nature of content creation
 - **Directory Organization**: Posts are organized by date using the format `YYYY/MM/DD` based on local timezone (`/usr/bin/date +%Y/%m/%d`)
+  - For the URL of the blog entry for the current date, you can use
+    - `date +"https://github.com/johnsmith968530/blog/tree/here-and-now/%Y/%m/%d/"`
+  - On a Mac, if you have Google Chrome, you might be able to do something like
+    - `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome "$(date +'https://github.com/johnsmith968530/blog/tree/here-and-now/%Y/%m/%d/')"`
 - **AI Accessibility**: All content is structured to be easily parseable by both humans and AI systems
 
 ## Key Features
