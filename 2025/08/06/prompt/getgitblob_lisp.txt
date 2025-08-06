@@ -1,0 +1,1 @@
+Let's say I have some lisp code that I can see from `git cat-file blob <some-hash>`. Can you provide code for SBCL that will eval this lisp code, perhaps by spawning a shell command and getting the output?
