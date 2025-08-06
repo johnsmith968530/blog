@@ -26,6 +26,17 @@ envy global set git hash gitignore rust $(git hash-object \
 ```
 * I have an implementation of a "string stack" I built on top of Redis, which I've tweaked to work with MacOS.
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stringstack.sh
+* Printable ruler
+  * https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/06/src/printable-ruler.html
+    * I tried using Claude Opus 4.1 to create this using the prompt in https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/prompt/ruler.txt but the printed ruler didn't display the tick marks and other essential elements properly (the browser displayed them, though).
+    * ChatGPT o4-mini-high made something that worked, and worked well, using the same prompt and that's what I went with.
+  * In the "Scale" box on the HTML, 1.496 made the measurements right when calibrated against multiple rulers in both inches and centimeters.
+    * The accuracy was so high that the thickness of the ruler I calibrated against made a difference (a slight change in viewing angle gets multiplied by the thickness of the ruler to create a micron-scale measurement error).
+  * Printed using Google Chrome (not system dialog):
+    * Orientation: Landscape
+    * No headers or footers
+    * Margins: None
+    * Scale: Custom (100%)
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
