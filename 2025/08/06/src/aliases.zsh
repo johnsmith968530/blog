@@ -7,5 +7,6 @@ alias hi="taskmaster inspect"
 alias hl="taskmaster find"
 alias lessS='less "$(rS0)"'
 alias nS='nvim "$(rS0)"'
+alias rDS='rcsdiff "$(rS0)"'
 
 # vim: set et ff=unix ft=zsh nocp sts=2 sw=2 ts=2:

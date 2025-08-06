@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/RCS/README.md,v $
-$Date: 2025/08/06 18:00:21 $
-$Revision: 1.5 $
+$Date: 2025/08/06 20:06:23 $
+$Revision: 1.6 $
 ```
 
 # More h353 Setup
@@ -29,6 +29,15 @@ envy global set git hash bash template $(git hash-object \
   "`envy global get blog root`/2025/08/06/src/bash_template.txt")
 envy global set git hash zsh template $(git hash-object \
   "`envy global get blog root`/2025/08/06/src/zsh_template.txt")
+```
+
+There's lots of repeated code in the above, so let's define some temporary convenience functions:
+```zsh
+export TODAY1=$(date +"`envy global get blog root`/%Y/%m/%d")  
+tmp_file_keys () { h1=$(git hash-object "$TODAY1/src/$1"); shift; echodo envy global set git hash "$@" $h1; }
+tmp_file_keys echodo.sh bash echodo
+tmp_file_keys getgitblobbyhash.sh bash getgitblobbyhash
+tmp_file_keys getgitblobbykey.sh bash getgitblobbykey
 ```
 * I have an implementation of a "string stack" I built on top of Redis, which I've tweaked to work with MacOS.
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stringstack.sh
