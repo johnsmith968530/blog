@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/05/RCS/README.md,v $
-$Date: 2025/08/06 03:16:37 $
-$Revision: 1.19 $
+$Date: 2025/08/06 04:27:06 $
+$Revision: 1.20 $
 ```
 
 # h353 setup
@@ -48,6 +48,7 @@ ce34b8679409f40fa902e026f2fa9cbd47f430b7
   * Installed Ollama 0.11.0 using the app from the website.
   * Downloaded the `gpt-oss:20b` model. It seems quite good, at first glance.
   * I tried `gpt-oss:120b`, but the app seemed to take forever doing nothing. I guess 32 GB unified memory won't cut it.
+  * Looking at `~/.ollama/models/` more closely, it seems you can combine the models directories of two separate ollama installations (perhaps on different machines) simply by copying the missing files from one to the other. The blobs are stored using filenames that incorporate the SHA256 hash, so they won't overwrite, and the manifests are named after the model names.
 * Installed [OpenSCAD](https://openscad.org/downloads.html) 21.01 from the website.
 
 * Made [Butter Scallops with Mushrooms](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/05/butter_scallops_with_mushrooms.md).
