@@ -1,7 +1,7 @@
 ```text
-$Source: /home/x/Dropbox/2/src/blog/RCS/README.md,v $
-$Date: 2025/07/30 15:16:07 $
-$Revision: 1.4 $
+$Source: /Users/x/Dropbox/2/src/blog/RCS/README.md,v $
+$Date: 2025/08/06 17:51:51 $
+$Revision: 1.5 $
 ```
 
 # AI-Ready Blog
