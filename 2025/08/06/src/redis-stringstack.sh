@@ -1,12 +1,13 @@
-# $Source: /home/x/Dropbox/2/src/bash/RCS/redis-stringstack.sh,v $
-# $Date: 2025/02/18 19:25:50 $
-# $Revision: 1.10 $
+# $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/src/RCS/redis-stringstack.sh,v $
+# $Date: 2025/08/06 15:06:53 $
+# $Revision: 1.2 $
 
-# Set up the OS variable if it isn't set already
-[[ -v ORG_AU0_OS ]] || export ORG_AU0_OS="`/usr/bin/uname -o`"
+# Set up the OS variable
+export ORG_AU0_OS="`envy global get OS`"
 
-# Set up Redis authentication if not already set
-[[ -v REDISCLI_AUTH ]] || export REDISCLI_AUTH="$(envy secret get redis password)"
+# Set up Redis authentication
+export REDISCLI_AUTH="$(envy secret get redis password)"
+[ -z "$REDISCLI_AUTH" ] && unset REDISCLI_AUTH
 
 # Push arguments onto the string stack. If no arguments, then push
 # the clipboard onto the string stack.
@@ -15,6 +16,9 @@ prS() {
         case "$ORG_AU0_OS" in
             Cygwin)
                 /usr/bin/cat /dev/clipboard | redis-cli -x LPUSH org.au0:stack:string
+                ;;
+            Darwin)
+                /usr/bin/pbpaste | redis-cli -x LPUSH org.au0:stack:string
                 ;;
             FreeBSD)
                 ;;
@@ -59,6 +63,9 @@ crS() {
         case "$ORG_AU0_OS" in
             Cygwin)
                 echo -n "$top" > /dev/clipboard
+                ;;
+            Darwin)
+                echo -n "$top" | /usr/bin/pbcopy
                 ;;
             FreeBSD)
                 ;;
