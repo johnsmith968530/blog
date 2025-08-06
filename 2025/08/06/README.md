@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/RCS/README.md,v $
-$Date: 2025/08/06 20:06:23 $
-$Revision: 1.6 $
+$Date: 2025/08/06 21:26:43 $
+$Revision: 1.7 $
 ```
 
 # More h353 Setup
@@ -38,6 +38,9 @@ tmp_file_keys () { h1=$(git hash-object "$TODAY1/src/$1"); shift; echodo envy gl
 tmp_file_keys echodo.sh bash echodo
 tmp_file_keys getgitblobbyhash.sh bash getgitblobbyhash
 tmp_file_keys getgitblobbykey.sh bash getgitblobbykey
+tmp_file_keys redis-stringstack.sh bash redis-stringstack
+tmp_file_keys redis-stardatestack.sh bash redis-stardatestack
+tmp_file_keys prependtopathset.zsh zsh prependtopathset
 ```
 * I have an implementation of a "string stack" I built on top of Redis, which I've tweaked to work with MacOS.
   * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/redis-stringstack.sh

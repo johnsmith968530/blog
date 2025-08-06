@@ -1,0 +1,1 @@
+`/Users/x/Dropbox/2/src/blog/2025/08/06/src/prependtopathset.sh` works on Linux (bash) but not on MacOS (zsh).

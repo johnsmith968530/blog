@@ -1,6 +1,6 @@
 # $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/src/RCS/redis-stringstack.sh,v $
-# $Date: 2025/08/06 15:06:53 $
-# $Revision: 1.2 $
+# $Date: 2025/08/06 21:15:50 $
+# $Revision: 1.3 $
 
 # Set up the OS variable
 export ORG_AU0_OS="`envy global get OS`"
@@ -56,9 +56,16 @@ poprS() {
     rS
 }
 
-# Copy top of stack to clipboard
+# Usage:
+#   crS
+#     Copy top of stack to clipboard
+#   crS 3
+#     Get item at specified index 3 (0-based)
+#
 crS() {
-    local top="$(redis-cli LINDEX org.au0:stack:string 0)"
+    local n1="$1"
+    [ -z "$n1" ] && n1="0"
+    local top="$(redis-cli LINDEX org.au0:stack:string $n1)"
     if [ -n "$top" ]; then
         case "$ORG_AU0_OS" in
             Cygwin)

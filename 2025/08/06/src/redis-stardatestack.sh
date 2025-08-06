@@ -1,12 +1,13 @@
 # $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/src/RCS/redis-stardatestack.sh,v $
-# $Date: 2025/08/06 19:27:36 $
-# $Revision: 1.1 $
+# $Date: 2025/08/06 21:17:50 $
+# $Revision: 1.3 $
 
-# Set up the OS variable if it isn't set already
-[[ -v ORG_AU0_OS ]] || export ORG_AU0_OS="`/usr/bin/uname -o`"
+# Set up the OS variable
+export ORG_AU0_OS="`envy global get OS`"
 
-# Set up Redis authentication if not already set
-[[ -v REDISCLI_AUTH ]] || export REDISCLI_AUTH="$(envy secret get redis password)"
+# Set up Redis authentication
+export REDISCLI_AUTH="$(envy secret get redis password)"
+[ -z "$REDISCLI_AUTH" ] && unset REDISCLI_AUTH
 
 # Push current stardate or given stardates onto the stack
 prStar() {
@@ -55,11 +56,16 @@ poprStar() {
 
 # Copy top stardate to clipboard
 crStar() {
-    local top="$(redis-cli LINDEX org.au0:stack:stardate 0)"
+    local n1="$1"
+    [ -z "$n1" ] && n1="0"
+    local top="$(redis-cli LINDEX org.au0:stack:stardate $n1)"
     if [ -n "$top" ]; then
         case "$ORG_AU0_OS" in
             Cygwin)
                 echo -n "$top" > /dev/clipboard
+                ;;
+            Darwin)
+                echo -n "$top" | /usr/bin/pbcopy
                 ;;
             FreeBSD)
                 ;;
@@ -100,8 +106,5 @@ rStarn() {
     fi
     redis-cli LINDEX org.au0:stack:stardate $1
 }
-
-# Create ZFS snapshot using top stardate
-alias zfs.snap='logbot_do zfs snapshot -r "$(rS0)@$(rStar0)"'
 
 # vim: set et ff=unix ft=sh nocp sts=2 sw=2 ts=2:
