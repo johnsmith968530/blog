@@ -1,0 +1,1 @@
+Create a self-contained single-file HTML file that displays a ruler (inches and centimeters) suitable for printing, so I can print rulers using any printer. Include an adjustable parameter that scales the size of the ruler, so I can adjust and calibrate it for minor variations in printers.
