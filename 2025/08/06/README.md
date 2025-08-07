@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/RCS/README.md,v $
-$Date: 2025/08/07 01:08:54 $
-$Revision: 1.13 $
+$Date: 2025/08/07 02:02:09 $
+$Revision: 1.14 $
 ```
 
 # More h353 Setup
@@ -70,6 +70,10 @@ tmp_file_keys nodejs_template.txt javascript template
   * No headers or footers
   * Margins: None
   * Scale: Custom (100%)
+
+# Name Change
+* Ealier this year, I'd changed my legal name from "Chris Oei" to "John Smith" via a court order (case # D-25-701762-N in the [Clark County Courts](https://www.clarkcountycourts.us/Portal/Home/Dashboard/29)).
+* I updated my name on my [Apple ID](https://account.apple.com), but for some reason, my iOS devices kept trying to use my old name in apps like Facetime even though I tried changing my name in the individual apps; iOS seemed to try to change my name back. It seems like it was getting the outdated info from the Contacts app, which was linked to my account. I updated my info in the Contacts app, and so far I haven't seen the problem resurface.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
