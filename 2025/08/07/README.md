@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/07/RCS/README.md,v $
-$Date: 2025/08/07 19:54:56 $
-$Revision: 1.4 $
+$Date: 2025/08/07 20:01:31 $
+$Revision: 1.5 $
 ```
 
 # More h353 Setup
@@ -15,6 +15,7 @@ rsync -avP ~/.ollama/models/ "$(envy global get ollama models backup 1)/"
 ```
 
 # GPT-5
+* GPT-5 was officially released this morning (2025.598423) and I see it's available on [OpenRouter](https://openrouter.ai/openai/gpt-5-chat) and [NanoGPT](https://nano-gpt.com/conversation/new).
 * I tried asking GPT-5 on OpenRouter about simulating a quantum spin liquid.
   * The prompt:
     * https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/07/prompt/quantum_spin_liquid.txt
