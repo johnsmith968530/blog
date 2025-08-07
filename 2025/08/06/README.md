@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/RCS/README.md,v $
-$Date: 2025/08/07 01:06:35 $
-$Revision: 1.12 $
+$Date: 2025/08/07 01:08:54 $
+$Revision: 1.13 $
 ```
 
 # More h353 Setup
@@ -57,7 +57,7 @@ tmp_file_keys nodejs_template.txt javascript template
   * To make it, I just tweaked the output of Claude Sonnet 4.
     * The prompt: https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/prompt/getgitblob_node.txt
   * Unfortunately, JavaScript's `eval` command doesn't work when the string it tries to eval has `import` statements.
-    * See [test3.js](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/getgitblobbyhash.js) for an example of this failure mode.
+    * See [test3.js](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/06/src/test3.js) for an example of this failure mode.
 
 # Printable ruler
 * https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/06/src/printable-ruler.html
