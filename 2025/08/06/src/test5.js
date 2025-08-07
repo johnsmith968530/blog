@@ -1,8 +1,10 @@
 // $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/src/RCS/test5.js,v $
-// $Date: 2025/08/07 02:39:21 $
-// $Revision: 1.1 $
+// $Date: 2025/08/07 04:55:01 $
+// $Revision: 1.2 $
 
-import {evalGitBlobByHash} from './getgitblobbyhash.js';
+import {evalGitBlobByHash, getGitBlobByHash} from './getgitblobbyhash.js';
+global.evalGitBlobByHash = evalGitBlobByHash;
+global.getGitBlobByHash = getGitBlobByHash;
 
 // This pulls test4.js from the git blob store and evals it.
 // It works because this file does the import which

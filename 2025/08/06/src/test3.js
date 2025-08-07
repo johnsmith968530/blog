@@ -1,8 +1,9 @@
 // $Source: /Users/x/Dropbox/2/src/blog/2025/08/06/src/RCS/test3.js,v $
-// $Date: 2025/08/07 01:03:33 $
-// $Revision: 1.1 $
+// $Date: 2025/08/07 04:56:34 $
+// $Revision: 1.2 $
 
 import {evalGitBlobByHash} from './getgitblobbyhash.js';
+global.evalGitBlobByHash = evalGitBlobByHash;
 
 // This pulls test1.js from the git blob store and evals it. This works.
 evalGitBlobByHash("7770bb0270a2f4381554cc0a95e526c42507d36e");

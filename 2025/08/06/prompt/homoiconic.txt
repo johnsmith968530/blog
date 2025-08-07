@@ -1,0 +1,1 @@
+I'd like to use JavaScript like I use homoiconic Lisp. I've got some ideas for self-modifying code, and all this module encapsulation and contexts is causing problems. I need to be able to execute strings as code in the global context, and I'd be happy to have everything in a single global context. I can sandbox the entire environment for safety, so it's not as bad as it sounds.
