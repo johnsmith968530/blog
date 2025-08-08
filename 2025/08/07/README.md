@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/07/RCS/README.md,v $
-$Date: 2025/08/07 20:35:29 $
-$Revision: 1.6 $
+$Date: 2025/08/08 12:53:35 $
+$Revision: 1.7 $
 ```
 
 # More h353 Setup
@@ -23,6 +23,11 @@ rsync -avP ~/.ollama/models/ "$(envy global get ollama models backup 1)/"
     * https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/07/OpenRouter_GPT-5_quantum_spin_liquid.md
   * For comparison, I also asked `qwen3-coder:30b` running locally on my MacBook Air (h353):
     * https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/07/ollama_qwen3-coder_30b_quantum_spin_liquid.md
+
+# h354
+* iPhone 16
+  * Does not have a physical SIM card slot.
+    * I had to call T-mobile to transfer service from my old physical SIM to an eSIM.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
