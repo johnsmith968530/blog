@@ -1,0 +1,1 @@
+I'd like a strategy game written in Node.js where the players are AI models with OpenAI-like APIs and the game play is loosely inspired by Peter Suber's Nomic. The game would be played with 3 AI players, where each player proposes changes to the game code itself. The changes are accepted if and only if the other two players approve the changes.
