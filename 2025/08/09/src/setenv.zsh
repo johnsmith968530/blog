@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+# $Source$
+# $Date$
+# $Revision$
+
+
+# vim: set et ff=unix ft=zsh nocp sts=2 sw=2 ts=2:
