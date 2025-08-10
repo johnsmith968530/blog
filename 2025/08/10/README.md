@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 16:25:42 $
-$Revision: 1.3 $
+$Date: 2025/08/10 16:50:30 $
+$Revision: 1.4 $
 ```
 
 # envy
@@ -17,6 +17,7 @@ done
 ```
 Once I do that, I can get the RCS headers with
 * `envy local get RCS`
+
 and the specific revision number with
 * `envy local get RCS Revision`
 
