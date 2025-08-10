@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 22:54:48 $
-$Revision: 1.11 $
+$Date: 2025/08/10 22:57:47 $
+$Revision: 1.12 $
 ```
 
 # envy
@@ -134,6 +134,12 @@ echodo borg create --{list,show-{rc,version},stats,verbose} "::$(rS0)-$(rStar0)"
 
 # Finally, check the repo and make sure there aren't any errors.
 borg check --{show-{rc,version},verbose,verify-data}
+
+# borg list --short | grep '^_ollama_models'
+# _ollama_models-h353-2025.607800830796577
+# _ollama_models-huggingface.co_bartowski_TheDrummer_Cydonia-R1-24B-v4-GGUF_Q4_K_M-2025.607540271435710
+# _ollama_models-qwen3-coder_30b-2025.607919298579418
+# _ollama_models-gpt-oss_20b-2025.607943176052686
 ```
 
 # Genmaicha Noodles
