@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 22:09:15 $
-$Revision: 1.10 $
+$Date: 2025/08/10 22:54:48 $
+$Revision: 1.11 $
 ```
 
 # envy
@@ -135,6 +135,13 @@ echodo borg create --{list,show-{rc,version},stats,verbose} "::$(rS0)-$(rStar0)"
 # Finally, check the repo and make sure there aren't any errors.
 borg check --{show-{rc,version},verbose,verify-data}
 ```
+
+# Genmaicha Noodles
+* Make 1 package beef-flavored instant ramen noodles, al dente.
+* Drain the liquid.
+* Add a spoonful of sesame oil for flavor. Mix well.
+* Sprinkle a spoonful of Genmaicha (Japanese green tea with roasted rice) on top of the noodles as a crispy garnish.
+* Add 1 raw egg on top in the center.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
