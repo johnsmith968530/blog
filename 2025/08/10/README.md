@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 21:17:36 $
-$Revision: 1.8 $
+$Date: 2025/08/10 21:39:46 $
+$Revision: 1.9 $
 ```
 
 # envy
@@ -84,6 +84,37 @@ echodo borg create --{list,show-{rc,version},stats,verbose} "::$(rS0)-$(rStar0)"
 rm -rf .ollama/models
 # Restore the original directory (with all the models) from backup
 borg extract --{list,show-{rc,version},verbose} ::_ollama_models-h353-2025.607800830796577
+# Remove all models except for one
+ollama rm huggingface.co/bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF:Q4_K_M
+ollama rm gpt-oss:20b
+# Refresh the individual model, since it's been a while since I pulled it.
+ollama pull qwen3-coder:30b
+# Backed up the remaining individual model.
+prS .ollama/models/manifests/registry.ollama.ai/library/qwen3-coder/30b
+prStarMtime "$(rS0)"
+prS $(echo -n "$(rS0)" | sed 's|\.ollama/models/manifests/registry.ollama.ai/library/|_ollama_models-|g; s|/|_|g')
+rS0 # Check the proposed name
+# The actual backup step is pretty fast since all the individual files are already in the repo.
+echodo borg create --{list,show-{rc,version},stats,verbose} "::$(rS0)-$(rStar0)" .ollama/models
+# Erase the remaining model
+rm -rf .ollama/models
+# Restore the original directory (with all the models) from backup
+borg extract --{list,show-{rc,version},verbose} ::_ollama_models-h353-2025.607800830796577
+# Remove all models except for one
+ollama rm huggingface.co/bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF:Q4_K_M
+ollama rm qwen3-coder:30b
+# Refresh the individual model, since it's been a while since I pulled it.
+ollama pull gpt-oss:20b
+# Backed up the remaining individual model.
+prS .ollama/models/manifests/registry.ollama.ai/library/gpt-oss/20b
+prStarMtime "$(rS0)"
+prS $(echo -n "$(rS0)" | sed 's|\.ollama/models/manifests/registry.ollama.ai/library/|_ollama_models-|g; s|/|_|g')
+rS0 # Check the proposed name
+# The actual backup step is pretty fast since all the individual files are already in the repo.
+echodo borg create --{list,show-{rc,version},stats,verbose} "::$(rS0)-$(rStar0)" .ollama/models
+
+# Finally, check the repo and make sure there aren't any errors.
+borg check --{show-{rc,version},verbose,verify-data}
 ```
 
 ```text
