@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 16:50:30 $
-$Revision: 1.4 $
+$Date: 2025/08/10 17:57:13 $
+$Revision: 1.5 $
 ```
 
 # envy
@@ -39,6 +39,23 @@ I've been putting structured data like this in my `envy universal`, so it's easi
 envy universal set ppl S Smith John 1 discord 1 username '@johnsmith968530'
 envy universal set ppl S Smith John 1 discord 1 url "https://discord.com/users/1332883209096003718"
 ```
+
+Here's an example of using `redis-stringstack` to take the HuggingFace URL of a GGUF model and massage it into a form that Ollama can use:
+
+```zsh
+# Push the clipboard content to the top of the string stack
+prS
+
+# Convet
+prS `echo -n "$(rS0)" | sed -E \
+  's|^https?://||;s|/blob/main/[^/]+-([^/.]+)\.gguf$|:\1|'`
+
+# In case you want to check the result:
+rS0
+
+ollama pull "$(rS0)"
+```
+The `sed` command was generated with Ollama running `gpt-oss:20b`.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
