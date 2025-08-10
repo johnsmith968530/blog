@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 21:14:44 $
-$Revision: 1.7 $
+$Date: 2025/08/10 21:17:36 $
+$Revision: 1.8 $
 ```
 
 # envy
@@ -75,7 +75,7 @@ prS .ollama/models/manifests/huggingface.co/bartowski/TheDrummer_Cydonia-R1-24B-
 prStarMtime "$(rS0)"
 # The sed command was created by running Claude Sonnet 4 on
 # the prompt at
-# https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/10/prompt/ollama_path_to_borg_repo_name.txt
+# https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/10/prompt/ollama_path_to_borg_repo_name.txt
 prS $(echo -n "$(rS0)" | sed 's|\.ollama/models/manifests/|_ollama_models-|g; s|/|_|g')
 rS0 # Check the proposed name
 # The actual backup step is pretty fast since all the individual files are already in the repo.
