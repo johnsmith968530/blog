@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 17:57:13 $
-$Revision: 1.5 $
+$Date: 2025/08/10 18:00:11 $
+$Revision: 1.6 $
 ```
 
 # envy
@@ -55,7 +55,8 @@ rS0
 
 ollama pull "$(rS0)"
 ```
-The `sed` command was generated with Ollama running `gpt-oss:20b`.
+The `sed` command was generated with Ollama running `gpt-oss:20b`
+using [this prompt](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/10/prompt/huggingface_url_to_ollama_model.txt).
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
