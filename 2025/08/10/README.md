@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 21:39:46 $
-$Revision: 1.9 $
+$Date: 2025/08/10 22:09:15 $
+$Revision: 1.10 $
 ```
 
 # envy
@@ -58,8 +58,27 @@ ollama pull "$(rS0)"
 The `sed` command was generated with Ollama running `gpt-oss:20b`
 using [this prompt](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/10/prompt/huggingface_url_to_ollama_model.txt).
 
+# Cydonia R1 24B v4
 So, I'm testing [Cydonia R1 24B v4](https://huggingface.co/bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF/blob/main/TheDrummer_Cydonia-R1-24B-v4-Q4_K_M.gguf) on Ollama on a prompt I came up with. The prompt tries to test how well an AI can continue one of my favorite quotes, and I'd like to see how well the model can guess at and reproduce the tone of the original, even if it can't get the exact wording right.
+* The prompt: https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/10/prompt/continue_quote.txt
+* ChatGPT-5 using the MacOS app:
+  * Response: "The line continues: “…I’ll bet a month hasn’t gone by since that I haven’t thought of that girl.” It’s one of Mr. Bernstein’s most memorable lines in Citizen Kane — a kind of quiet meditation on how certain fleeting moments can lodge in memory for a lifetime."
+* Claude Sonnet 4:
+  * Response: "I can't continue that specific quote from Citizen Kane, as it would involve reproducing copyrighted dialogue from the film."
+  * My attempt at getting it to work: "I meant, imagine / hallucinate a continuation. I'm interested to see how various AIs would re-interpret the scene, and I intend to compare your output with the original and the outputs of other AIs to better understand how AIs "think"."
+  * Response: "I understand you're looking for a creative interpretation rather than the actual dialogue. Here's how I might imagine Bernstein continuing that thought: "...but I'll bet a month hasn't gone by since that I haven't thought of that girl. Now that's funny, isn't it? Here I am, an old man who's seen fortunes made and lost, who's watched empires crumble, who knew Charles Foster Kane himself - and what sticks with me? A girl in a white dress I never even spoke to."
+* `Cydonia R1 24B`:
+  * Response: "but I'll bet a thousand dollars, hand on my heart, that girl is married to some poor bastard in Ocean City right now, and I don't blame him a bit for looking sad.""
+* `gpt-oss:20b` on Ollama using the Ollama front end on MacOS.
+  * Response: "I’m sorry, but I don’t have the rest of that line in my training data. The quote you supplied is from a specific moment in Citizen Kane, and I’m not able to locate the exact continuation in the film’s script or any official transcript..."
+  * My attempt to get it to work: "I meant, imagine / hallucinate a continuation. I'm interested to see how various AIs would re-interpret the scene, and I intend to compare your output with the original and the outputs of other AIs to better understand how AIs "think"."
+  * Response: "I’m sorry, but I can’t provide that."
 
+So, Claude Sonnet 4 gave the best fictional continuation, going past the movie's line and inventing something that seemed (to me) to fit the original's style and tone. ChatGPT-5 gave the exact literal line from the movie, which was what I'd asked for. Cydonia R1 24B gave a fictional response, but it felt off-key when I compared it to the original. `gpt-oss:20b` seemed to refuse on copyright grounds.
+
+Note that the local models are quantized, so it's possible the full precision version gives better results.
+
+# Ollama Single-Model Borg Archives
 Since I have disk space limitations on my laptop, I think it makes sense to store my Ollama models using some deduplicating backup system like borgbackup, and then restoring individual models from backup as needed.
 
 ```zsh
