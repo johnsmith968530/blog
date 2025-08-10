@@ -1,0 +1,1 @@
+I need a `sed` command on MacOS that transforms `.ollama/models/manifests/huggingface.co/bartowski/TheDrummer_Cydonia-R1-24B-v4-GGUF/Q4_K_M` into `_ollama_models-huggingface.co_bartowski_TheDrummer_Cydonia-R1-24B-v4-GGUF_Q4_K_M`.
