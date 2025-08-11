@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/11/RCS/README.md,v $
-$Date: 2025/08/11 22:27:53 $
-$Revision: 1.6 $
+$Date: 2025/08/11 22:29:48 $
+$Revision: 1.7 $
 ```
 
 # Ollama Single-Model Borg Archives
@@ -24,6 +24,7 @@ $Revision: 1.6 $
         * By the time we get to `Q4_K_M`, the model shows signs of "cognitive difficulties" in that it doesn't remember the girl with the parasol didn't see the narrator (as stated in the prompt).
         * At `Q3_K_M`, the model starts to ramble.
     * I ran the same model series with a different prompt involving an arithmetic sequence:
+      * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/11/src/test_quantization_2.zsh
       * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/05/prompt/testing_squares.txt
       * Results: https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/11/src/quantization_test/3144023318fa0ba2a79ae5a7e21a02d6203e0ac4
         * Looks like even `Q3_K_M` managed to get it right.
