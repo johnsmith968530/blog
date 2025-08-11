@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/11 01:59:12 $
-$Revision: 1.15 $
+$Date: 2025/08/11 05:10:17 $
+$Revision: 1.17 $
 ```
 
 # envy
@@ -73,8 +73,12 @@ So, I'm testing [Cydonia R1 24B v4](https://huggingface.co/bartowski/TheDrummer_
   * Response: "I’m sorry, but I don’t have the rest of that line in my training data. The quote you supplied is from a specific moment in Citizen Kane, and I’m not able to locate the exact continuation in the film’s script or any official transcript..."
   * My attempt to get it to work: "I meant, imagine / hallucinate a continuation. I'm interested to see how various AIs would re-interpret the scene, and I intend to compare your output with the original and the outputs of other AIs to better understand how AIs "think"."
   * Response: "I’m sorry, but I can’t provide that."
-
 So, Claude Sonnet 4 gave the best fictional continuation, going past the movie's line and inventing something that seemed (to me) to fit the original's style and tone. ChatGPT-5 gave the exact literal line from the movie, which was what I'd asked for. Cydonia R1 24B gave a fictional response, but it felt off-key when I compared it to the original. `gpt-oss:20b` seemed to refuse on copyright grounds.
+* [`huihui_ai/qwen3-abliterated:8b`](https://ollama.com/huihui_ai/qwen3-abliterated:8b) with the context length turned up to 128k on my M4 Mac with 32GB gave
+  * Response: "but … it was like a flash—like a lightning strike. She had a look about her, you know? Like she’d seen something you couldn’t put into words. And her eyes—oh, her eyes! They were the color of the sea on a summer’s day, but there was something in them… like she’d already lost everything. And then, just as we passed each other, she looked up… and for a second, I swear, I saw her smile. It was like… like the whole world stopped. And then she was gone..." After that, the model messed up, conflating Bernstein with Kane, but still, the continuation was the best fictional response of all the models.
+* `gemma3n:e4b` gave surprisingly autistic responses.
+  * Response: "...but the way the light caught the lace... it stayed with me. For years. Just that flash of white. A whole world in a single moment, gone in an instant. You wouldn't believe it. A man carries those things, you see. The quietest echoes."
+  * I tried it again and got a similar response that de-emphasized the girl: "...but the color of that dress... it stayed with me. A flash of pure, untarnished white against the grey water. I've seen countless dresses since, grand ones, simple ones, but none held that same… light. It's a strange thing, isn't it? A fleeting moment, a simple image, imprinted so deeply. You never forget those, no matter how much time passes."
 
 Note that the local models are quantized, so it's possible the full precision version gives better results.
 
@@ -111,6 +115,7 @@ ollama pull qwen3-coder:30b
 # Backed up the remaining individual model.
 prS .ollama/models/manifests/registry.ollama.ai/library/qwen3-coder/30b
 prStarMtime "$(rS0)"
+# This sed command is different from before. I tailored it for models on the Ollama main registry.
 prS $(echo -n "$(rS0)" | sed 's|\.ollama/models/manifests/registry.ollama.ai/library/|_ollama_models-|g; s|/|_|g')
 rS0 # Check the proposed name
 # The actual backup step is pretty fast since all the individual files are already in the repo.
@@ -140,6 +145,21 @@ borg check --{show-{rc,version},verbose,verify-data}
 # _ollama_models-huggingface.co_bartowski_TheDrummer_Cydonia-R1-24B-v4-GGUF_Q4_K_M-2025.607540271435710
 # _ollama_models-qwen3-coder_30b-2025.607919298579418
 # _ollama_models-gpt-oss_20b-2025.607943176052686
+```
+
+## Ollama User models
+* Ollama allows individual users to upload their models to the Ollama registry without putting it in the main library. This requires a different `sed` command.
+
+```zsh
+prS "huihui_ai/qwen3-abliterated:8b"
+ollama pull "$(rS0)"
+prS .ollama/models/manifests/registry.ollama.ai/huihui_ai/qwen3-abliterated/8b
+prStarMtime "$(rS0)"
+prS $(echo -n "$(rS0)" | sed -E 's|\.ollama/models/manifests/registry.ollama.ai(/library)?/|_ollama_models-|g; s|/|_|g')
+rS0 # Check the proposed name
+# Make sure there's only one Ollama model installed
+ollama ls
+echodo borg create --{list,show-{rc,version},stats,verbose} "::$(rS0)-$(rStar0)" .ollama/models
 ```
 
 # Genmaicha Noodles
