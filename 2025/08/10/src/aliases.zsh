@@ -1,9 +1,10 @@
 #!/bin/zsh
 
 # $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/src/RCS/aliases.zsh,v $
-# $Date: 2025/08/10 14:09:23 $
-# $Revision: 1.1 $
+# $Date: 2025/08/11 03:24:12 $
+# $Revision: 1.2 $
 
+alias borg.extractS='borg extract --{list,show-{rc,version},verbose} "::$(rS0)"'
 alias rLS='rlog "$(rS0)" | less'
 alias rIS='rcs_init "$(rS0)" && co -f -l "$(rS0)"'
 
