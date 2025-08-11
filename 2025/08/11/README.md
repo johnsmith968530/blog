@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/11/RCS/README.md,v $
-$Date: 2025/08/11 22:29:48 $
-$Revision: 1.7 $
+$Date: 2025/08/11 22:42:30 $
+$Revision: 1.8 $
 ```
 
 # Ollama Single-Model Borg Archives
@@ -29,6 +29,7 @@ $Revision: 1.7 $
       * Results: https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/11/src/quantization_test/3144023318fa0ba2a79ae5a7e21a02d6203e0ac4
         * Looks like even `Q3_K_M` managed to get it right.
         * So the "quantization hurts writing more than coding & math" hypothesis seems to hold up, at least for now.
+    * It also seems likely that the early quantization tests people did were with models that had a relatively high parameter to training data tokens ratio, and were therefore more "compressible" than the current models, which are operating at higher efficiency in the bf16 training mode. And Google did have some research on quantization-aware training or some such, which may mean that re-quantizing the model would lead to Pareto sub-optimal performance on the quality vs size curve. I've gone `Q4_K_M` simply because the quantized model's page stated "Good quality, default size for most use cases, recommended", but it's possible this is boilerplate that was generated quite a while ago for an entirely different model with the assumption that `Q4_K_M` would have similar effects on different models.
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
