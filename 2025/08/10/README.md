@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/11 01:56:01 $
-$Revision: 1.14 $
+$Date: 2025/08/11 01:59:12 $
+$Revision: 1.15 $
 ```
 
 # envy
@@ -150,7 +150,7 @@ borg check --{show-{rc,version},verbose,verify-data}
 * Add 1 raw egg on top in the center.
 
 # Adding Search Capability to envy
-I used Cline and Claude Sonnet 4 to add the ability for `envy` to search each section (local, secret, global, or universal) for a regular expression:
+I used Cline and Claude Sonnet 4 to add the ability for [`envy`](https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/10/src/envy) to search each section (local, secret, global, or universal) for a regular expression:
 
 ```zsh
 envy global search Los_Angeles
