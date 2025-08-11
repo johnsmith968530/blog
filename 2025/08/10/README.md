@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/11 01:52:56 $
-$Revision: 1.13 $
+$Date: 2025/08/11 01:56:01 $
+$Revision: 1.14 $
 ```
 
 # envy
