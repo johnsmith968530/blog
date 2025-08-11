@@ -162,6 +162,8 @@ envy local search Revision
 # local -> RCS -> Revision -> ＄Revision: 1.2 ＄
 ```
 
+My [first attempt](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/10/prompt/envy_search.txt) at prompting Cline to do it didn't quite succeed as it had some minor bugs, but these were fixed by [my second prompt](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/10/prompt/envy_search_fix.txt) to Cline.
+
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
 ```
