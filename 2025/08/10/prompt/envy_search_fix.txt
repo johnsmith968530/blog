@@ -1,0 +1,1 @@
+There's something about the path display that isn't quite right. It seems the path segments are sometimes repeated within each line of the display. For example, `localenv` should only appear once in each line in your example. Also, could you use `local` instead of `localenv`? `localenv` should not be visible to the user as it is an implementation detail.

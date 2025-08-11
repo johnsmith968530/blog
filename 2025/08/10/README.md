@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/10/RCS/README.md,v $
-$Date: 2025/08/10 22:57:47 $
-$Revision: 1.12 $
+$Date: 2025/08/11 01:52:56 $
+$Revision: 1.13 $
 ```
 
 # envy
@@ -148,6 +148,19 @@ borg check --{show-{rc,version},verbose,verify-data}
 * Add a spoonful of sesame oil for flavor. Mix well.
 * Sprinkle a spoonful of Genmaicha (Japanese green tea with roasted rice) on top of the noodles as a crispy garnish.
 * Add 1 raw egg on top in the center.
+
+# Adding Search Capability to envy
+I used Cline and Claude Sonnet 4 to add the ability for `envy` to search each section (local, secret, global, or universal) for a regular expression:
+
+```zsh
+envy global search Los_Angeles
+# Returns global -> TZ -> America/Los_Angeles
+
+envy local search Revision
+# Returns two matches:
+# local -> RCS -> Revision
+# local -> RCS -> Revision -> ＄Revision: 1.2 ＄
+```
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
