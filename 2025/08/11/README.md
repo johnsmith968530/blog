@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/11/RCS/README.md,v $
-$Date: 2025/08/11 22:07:08 $
-$Revision: 1.5 $
+$Date: 2025/08/11 22:27:53 $
+$Revision: 1.6 $
 ```
 
 # Ollama Single-Model Borg Archives
@@ -23,6 +23,12 @@ $Revision: 1.5 $
         * At `Q6_K_L` (there was no `Q6_K_M` model, so I chose `Q6_K_L`), the result seems somewhat off-key.
         * By the time we get to `Q4_K_M`, the model shows signs of "cognitive difficulties" in that it doesn't remember the girl with the parasol didn't see the narrator (as stated in the prompt).
         * At `Q3_K_M`, the model starts to ramble.
+    * I ran the same model series with a different prompt involving an arithmetic sequence:
+      * https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/05/prompt/testing_squares.txt
+      * Results: https://github.com/johnsmith968530/blog/tree/here-and-now/2025/08/11/src/quantization_test/3144023318fa0ba2a79ae5a7e21a02d6203e0ac4
+        * Looks like even `Q3_K_M` managed to get it right.
+        * So the "quantization hurts writing more than coding & math" hypothesis seems to hold up, at least for now.
+
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
 ```
