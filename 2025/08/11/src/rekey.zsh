@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 # $Source: /Users/x/Dropbox/2/src/blog/2025/08/11/src/RCS/rekey.zsh,v $
-# $Date: 2025/08/11 16:51:31 $
-# $Revision: 1.5 $
+# $Date: 2025/08/11 17:03:35 $
+# $Revision: 1.6 $
 
 source getgitblobbykey.sh
 
@@ -12,6 +12,7 @@ tmp_file_keys () { h1=$(git hash-object "$1"); shift; echodo envy universal set 
 
 tmp_file_keys evalgitblobbykey.sh bash evalgitblobbykey
 tmp_file_keys getgitblobbykey.sh bash getgitblobbykey
+tmp_file_keys logdir.sh bash logdir
 tmp_file_keys useborg.sh bash useborg
 
 # vim: set et ff=unix ft=zsh nocp sts=2 sw=2 ts=2:

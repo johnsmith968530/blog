@@ -1,1 +1,1 @@
-evalgitblobbykey () { local hash=$(envy universal get git hash "$@"); eval $(git cat-file blob "$hash") }
+evalgitblobbykey () { local hash=$(envy universal get git hash "$@"); local blob="$(git cat-file blob $hash)"; eval "$blob" }
