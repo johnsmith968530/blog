@@ -1,0 +1,1 @@
+for x1 in $files1; do echo "$x1"; useborg 2024.595435 && pushd ~ && echodo rm -rf .ollama/models && echodo borg extract --{list,show-{rc,version},verbose} "$BORG_REPO::$x1" && popd && ./archive_model.zsh; done

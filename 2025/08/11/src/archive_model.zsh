@@ -1,11 +1,12 @@
 #!/bin/zsh
 
 # $Source: /Users/x/Dropbox/2/src/blog/2025/08/11/src/RCS/archive_model.zsh,v $
-# $Date: 2025/08/11 15:54:54 $
-# $Revision: 1.2 $
+# $Date: 2025/08/11 20:06:02 $
+# $Revision: 1.6 $
 
 source getgitblobbykey.sh
 eval "$(getgitblobbykey bash echodo)"
+eval "$(getgitblobbykey bash logdir)"
 eval "$(getgitblobbykey bash useborg)"
 
 pushd ~
@@ -36,7 +37,9 @@ for r1 in 2024.595435 41 42
 do
   useborg $r1 && \
     echodo borg create --{list,show-{rc,version},stats,verbose} \
-      "::$n2)" .ollama/models
+      "$BORG_REPO::$n2" .ollama/models && \
+    echo $(stardate) borg create --{list,show-{rc,version},stats,verbose} \
+      "$BORG_REPO::$n2" .ollama/models | tee -a "$LOGDIR1/borg.log"
 done
 
 popd
