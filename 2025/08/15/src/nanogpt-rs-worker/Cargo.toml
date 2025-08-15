@@ -1,0 +1,19 @@
+[package]
+name = "nanogpt-rs-worker"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+redis = { version = "0.28.2", features = ["tokio-comp"] }
+tokio = { version = "1.36.0", features = ["full"] }
+serde = { version = "1.0.196", features = ["derive"] }
+serde_json = "1.0.113"
+anyhow = "1.0.79"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+reqwest = { version = "0.11.24", features = ["json"] }
+base64 = "0.21.7"
+async-trait = "0.1.77"
+redis-streams-worker = { path = "../redis-streams-worker" }
+chrono = "0.4.34"
+dirs = "5.0.1"
