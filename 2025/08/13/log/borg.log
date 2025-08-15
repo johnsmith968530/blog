@@ -1,0 +1,3 @@
+2025.615905219431852 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-mistral-small3.2_24b-2025.615887113140616 .ollama/models
+2025.615905885337497 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-mistral-small3.2_24b-2025.615887113140616 .ollama/models
+2025.615906614662663 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-mistral-small3.2_24b-2025.615887113140616 .ollama/models
