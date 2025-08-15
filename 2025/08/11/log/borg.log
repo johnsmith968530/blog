@@ -25,3 +25,9 @@
 2025.610822361745250 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-huggingface.co_bartowski_Qwen_Qwen3-4B-Instruct-2507-GGUF_IQ2_M-2025.610819761542416 .ollama/models
 2025.610824105783877 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-huggingface.co_bartowski_Qwen_Qwen3-4B-Instruct-2507-GGUF_IQ2_M-2025.610819761542416 .ollama/models
 2025.610826610857430 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-huggingface.co_bartowski_Qwen_Qwen3-4B-Instruct-2507-GGUF_IQ2_M-2025.610819761542416 .ollama/models
+2025.610912607813361 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-huihui_ai_qwen3-abliterated_14b-2025.610907217148679 .ollama/models
+2025.610913051750458 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-huihui_ai_qwen3-abliterated_14b-2025.610907217148679 .ollama/models
+2025.610913527397315 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-huihui_ai_qwen3-abliterated_14b-2025.610907217148679 .ollama/models
+2025.611058536276005 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-huihui_ai_gemma3-abliterated_12b-2025.611006881024878 .ollama/models
+2025.611059709538267 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-huihui_ai_gemma3-abliterated_12b-2025.611006881024878 .ollama/models
+2025.611060692541969 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-huihui_ai_gemma3-abliterated_12b-2025.611006881024878 .ollama/models
