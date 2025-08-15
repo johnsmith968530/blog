@@ -1,0 +1,3 @@
+2025.619213945966521 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-huggingface.co_bartowski_google_gemma-3-270m-it-qat-GGUF_bf16-2025.619197995941249 .ollama/models
+2025.619215055809264 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-huggingface.co_bartowski_google_gemma-3-270m-it-qat-GGUF_bf16-2025.619197995941249 .ollama/models
+2025.619216102232258 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-huggingface.co_bartowski_google_gemma-3-270m-it-qat-GGUF_bf16-2025.619197995941249 .ollama/models
