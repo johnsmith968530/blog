@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/16/RCS/README.md,v $
-$Date: 2025/08/17 13:55:28 $
-$Revision: 1.8 $
+$Date: 2025/08/17 13:59:54 $
+$Revision: 1.9 $
 ```
 
 * It was a bit hard trying to find Cline's MCP server settings on MacOS.
@@ -23,7 +23,7 @@ $Revision: 1.8 $
   * Speaker mentioned Grok is better at pointing out flaws and weaknesses, as ChatGPT tends to be supportive to the point of uselessness, as it can lead to fighting unwinnable court battles.
 
 # Caritas Abundat in Omnia Music Video
-* [Hildegard of Bingen](https://en.wikipedia.org/wiki/Hildegard_of_Bingen) was a writer, composer, philosopher, visionary mystic, and abbess during the High Middle Ages. She wrote a song, Caritas abundat in omnia (Love Abounds in All Things), which I've combined with Classical Chinese in a hip hop music video. It's my attempt to fuse Western Traditions (Christian thought, Latin language) with Eastern traditions (Daoism, Classical Chinese poetry) in a modern way (hip hop music, a bit of punk fashion, AI-generated).
+* [Hildegard of Bingen](https://en.wikipedia.org/wiki/Hildegard_of_Bingen) was a writer, composer, philosopher, visionary mystic, and abbess during the High Middle Ages. She wrote a song, Caritas abundat in omnia (Love Abounds in All Things), which I've combined with Classical Chinese in a hip hop music video. It's my attempt to fuse Western Traditions (Christian thought, Latin language) with Eastern traditions (Daoism, Classical Chinese poetry) in a modern way (hip hop music, a bit of punk fashion, AI-generated). If you're curious about the text, you can find more details [here](https://chatgpt.com/share/68a138dc-21c4-8001-ad3d-dc1042585c5f).
 * Prompt to Claude Sonnet 4: *Come up with a prompt for an AI image generator. I've got a hip hop song that's a mix of Latin and Classical Chinese with female vocals, and I wanted to come up with an avatar that's a mix of modern hip hop clothing, Classical Chinese fashion, with a touch of the Western Classical style.*
 * Response: *Portrait of a stylish female avatar with East Asian features, wearing an elegant fusion outfit that blends hip hop streetwear with classical Chinese hanfu and Western classical elements. She has a modern fitted crop top or bomber jacket in rich silk brocade with traditional Chinese patterns, layered over flowing wide sleeves reminiscent of Tang dynasty robes. Bottom half features contemporary baggy pants or a pleated skirt with classical Chinese embroidery details. Accessories include chunky gold chains mixed with jade jewelry, ornate hair pins in an elaborate updo with some loose strands, and perhaps a silk sash or corset-style bodice element inspired by Western classical dress. The color palette combines deep jewel tones (emerald, sapphire, gold) with modern urban colors. Confident, artistic pose against a subtle background that suggests both ancient Chinese architecture and contemporary urban elements. Photorealistic style with dramatic lighting that emphasizes the cultural fusion aesthetic.*
 * The result is [here](https://github.com/johnsmith968530/blog/blob/here-and-now/2025/08/16/ChatGPT_Image_Aug_16%2C_2025%2C_05_11_29_PM.png). I like the nose ring, tattoos, pants with pockets
