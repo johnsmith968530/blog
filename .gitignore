@@ -1,4 +1,6 @@
 __pycache__/
 .DS_Store
+.Trash/
+.Trash-1000/
 node_modules/
 RCS/
