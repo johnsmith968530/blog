@@ -39,7 +39,11 @@ enum Commands {
 
 #[derive(Subcommand)]
 enum Action {
-    Get { path: Vec<String> },
+    Get { 
+        path: Vec<String>,
+        #[arg(long, help = "Don't output the trailing newline")]
+        nonl: bool,
+    },
     Set { path: Vec<String> },
     Del { path: Vec<String> },
     Search { 
@@ -252,17 +256,34 @@ fn write_config(config_type: &str, config: &Config) -> Result<()> {
     Ok(())
 }
 
-fn handle_get(config_type: &str, path: &[String]) -> Result<()> {
+fn handle_get(config_type: &str, path: &[String], nonl: bool) -> Result<()> {
     let config = read_config(config_type)?;
     if let Some(value) = config.get_value(path) {
         match value {
-            Value::String(s) => println!("{}", s),
-            _ => println!("{}", serde_json::to_string_pretty(&value)?),
+            Value::String(s) => {
+                if nonl {
+                    print!("{}", s);
+                } else {
+                    println!("{}", s);
+                }
+            },
+            _ => {
+                let formatted = serde_json::to_string_pretty(&value)?;
+                if nonl {
+                    print!("{}", formatted);
+                } else {
+                    println!("{}", formatted);
+                }
+            },
         }
     } else {
         let section_name = get_section_name(config_type);
         let path_string = build_path_string(section_name, path);
-        println!("Path not found: {}", path_string);
+        if nonl {
+            print!("Path not found: {}", path_string);
+        } else {
+            println!("Path not found: {}", path_string);
+        }
     }
     Ok(())
 }
@@ -348,25 +369,25 @@ fn main() -> Result<()> {
 
     match cli.command {
         Commands::Local { action } => match action {
-            Action::Get { path } => handle_get("localenv", &path),
+            Action::Get { path, nonl } => handle_get("localenv", &path, nonl),
             Action::Set { path } => handle_set("localenv", &path),
             Action::Del { path } => handle_del("localenv", &path),
             Action::Search { args } => handle_search("localenv", &args),
         },
         Commands::Secret { action } => match action {
-            Action::Get { path } => handle_get("secrets", &path),
+            Action::Get { path, nonl } => handle_get("secrets", &path, nonl),
             Action::Set { path } => handle_set("secrets", &path),
             Action::Del { path } => handle_del("secrets", &path),
             Action::Search { args } => handle_search("secrets", &args),
         },
         Commands::Global { action } => match action {
-            Action::Get { path } => handle_get("global", &path),
+            Action::Get { path, nonl } => handle_get("global", &path, nonl),
             Action::Set { path } => handle_set("global", &path),
             Action::Del { path } => handle_del("global", &path),
             Action::Search { args } => handle_search("global", &args),
         },
         Commands::Universal { action } => match action {
-            Action::Get { path } => handle_get("universal", &path),
+            Action::Get { path, nonl } => handle_get("universal", &path, nonl),
             Action::Set { path } => handle_set("universal", &path),
             Action::Del { path } => handle_del("universal", &path),
             Action::Search { args } => handle_search("universal", &args),
