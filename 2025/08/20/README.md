@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/08/20/RCS/README.md,v $
-$Date: 2025/08/20 19:17:49 $
-$Revision: 1.3 $
+$Date: 2025/08/25 16:22:15 $
+$Revision: 1.4 $
 ```
 
 * I just heard about a new standard called `Agents.md`.
@@ -14,6 +14,13 @@ $Revision: 1.3 $
     * `convert A\ confident\ young\ Latina\ teacher\ in\ her\ 30s\ standing\ next\ to\ \(3\).png -resize 1080x1920^ -gravity center -extent 1080x1920 El\ Caballero\'s\ Legacy.png`
   * I had some trouble getting iMovie to create a 9:16 aspect ratio video in portrait orientation, so I resorted to ffmpeg:
     * `ffmpeg -loop 1 -i El_Caballero\'s_Legacy.png -i El_Caballero\'s_Legacy.mp3 -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest El_Caballero\'s_Legacy.mp4`
+* Useful phrase of the day:
+  * ¿Cómo se dice EXPRESSION en {español|inglés}?
+* Some open weight LLMs available on their creator's websites:
+  * https://chat.deepseek.com/
+  * https://www.kimi.com/
+  * https://chat.qwen.ai/
+  * https://chat.z.ai/
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
