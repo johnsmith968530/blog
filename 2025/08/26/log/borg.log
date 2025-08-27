@@ -1,0 +1,9 @@
+2025.651650399543314 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-magistral_24b-2025.651512430238427 .ollama/models
+2025.651651065448959 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-magistral_24b-2025.651512430238427 .ollama/models
+2025.651651794774125 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-magistral_24b-2025.651512430238427 .ollama/models
+2025.652355371638805 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-huggingface.co_unsloth_Seed-OSS-36B-Instruct-GGUF_Q4_K_M-2025.652148053018664 .ollama/models
+2025.652377092846336 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-huggingface.co_unsloth_Seed-OSS-36B-Instruct-GGUF_Q4_K_M-2025.652148053018664 .ollama/models
+2025.652413242009061 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-huggingface.co_unsloth_Seed-OSS-36B-Instruct-GGUF_Q4_K_M-2025.652148053018664 .ollama/models
+2025.652555079908780 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-devstral_24b-2025.652506532217103 .ollama/models
+2025.652555682394677 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-devstral_24b-2025.652506532217103 .ollama/models
+2025.652556348300322 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-devstral_24b-2025.652506532217103 .ollama/models
