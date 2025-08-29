@@ -10,3 +10,6 @@
 2025.658127568493228 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-gemma3_12b-2025.658124778031379 .ollama/models
 2025.658130898021227 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-gemma3_12b-2025.658124778031379 .ollama/models
 2025.658135559360744 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-gemma3_12b-2025.658124778031379 .ollama/models
+2025.658267852612880 borg create --list --show-rc --show-version --stats --verbose /Volumes/h337/borg/2024.595435::_ollama_models-gemma3_27b-2025.658259544647308 .ollama/models
+2025.658273433536351 borg create --list --show-rc --show-version --stats --verbose x@h162x3.au0.org:/mnt/zfs/h323p1/borg/41::_ollama_models-gemma3_27b-2025.658259544647308 .ollama/models
+2025.658282851344438 borg create --list --show-rc --show-version --stats --verbose x@server1.au0.org:/mnt/zfs/h326p1/borg/42::_ollama_models-gemma3_27b-2025.658259544647308 .ollama/models
