@@ -1,0 +1,8 @@
+{
+  "data": {
+    "key1": "VALUE1",
+    "key2": "value2"
+  },
+  "name": "TestFile",
+  "newKey": "CustomValue"
+}
