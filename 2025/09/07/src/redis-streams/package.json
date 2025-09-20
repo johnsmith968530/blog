@@ -1,0 +1,30 @@
+{
+  "name": "@modelcontextprotocol/redis-streams",
+  "version": "0.1.0",
+  "description": "Library for building MCP servers with Redis Streams",
+  "main": "build/index.js",
+  "type": "module",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.4.1",
+    "redis": "^4.6.13"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "mcp",
+    "redis",
+    "streams"
+  ],
+  "author": "",
+  "license": "MIT"
+}
