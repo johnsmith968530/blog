@@ -1,6 +1,6 @@
 // $Source: /Users/x/Dropbox/2/src/blog/2025/09/23/src/RCS/mothra6.js,v $
-// $Date: 2025/09/24 06:09:25 $
-// $Revision: 1.4 $
+// $Date: 2025/09/24 06:13:43 $
+// $Revision: 1.5 $
 
 // Playing around with 31 EDO Mothra 6
 // As described in https://www.youtube.com/watch?v=uH3ahBzDSrs
@@ -8,30 +8,9 @@
 
 // Paste this code into https://strudel.cc/
 
-// Cached frequency function for any EDO tuning system
-const getEdoFrequency = (() => {
-  const cache = new Map();
-  
-  return (baseFreq, edo, step) => {
-    if (!cache.has(baseFreq)) {
-      cache.set(baseFreq, new Map());
-    }
-    
-    const baseFreqCache = cache.get(baseFreq);
-    if (!baseFreqCache.has(edo)) {
-      baseFreqCache.set(edo, new Map());
-    }
-    
-    const stepCache = baseFreqCache.get(edo);
-    if (stepCache.has(step)) {
-      return stepCache.get(step);
-    }
-    
-    const freq = baseFreq * Math.pow(2, step/edo);
-    stepCache.set(step, freq);
-    return freq;
-  };
-})();
+const getEdoFrequency = (baseFreq, edo, step) => {
+  return baseFreq * Math.pow(2, step / edo);
+};
 
 stack(
   // Main melody
