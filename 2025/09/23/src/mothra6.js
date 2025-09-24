@@ -1,4 +1,4 @@
-// $Source: /Users/x/Dropbox/2/src/blog/2025/09/23/RCS/mothra6.js,v $
+// $Source: /Users/x/Dropbox/2/src/blog/2025/09/23/src/RCS/mothra6.js,v $
 // $Date: 2025/09/24 05:47:56 $
 // $Revision: 1.2 $
 
