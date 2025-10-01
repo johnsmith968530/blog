@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-// $Source: /Users/x/Dropbox/2/src/blog/2025/09/27/src/RCS/wan-2.5.js,v $
-// $Date: 2025/09/28 01:55:41 $
+// $Source: /Users/x/Dropbox/2/src/blog/2025/09/30/src/RCS/wan-2.5.js,v $
+// $Date: 2025/10/01 00:35:16 $
 // $Revision: 1.3 $
 
 import { execSync } from 'child_process';
@@ -10,6 +10,10 @@ const API_KEY = execSync('envy get secret nanogpt api_key',
 const model1 = 'wan-wavespeed-25';
 const BASE_URL = 'https://nano-gpt.com/api';
 const prompt1 = execSync(`envy get local nanogpt ${model1} prompt`,
+  { encoding: 'utf8' }).trim();
+const aspect_ratio1 = execSync(`envy get local nanogpt ${model1} aspect_ratio`,
+  { encoding: 'utf8' }).trim();
+const duration1 = execSync(`envy get local nanogpt ${model1} duration`,
   { encoding: 'utf8' }).trim();
 const stardate1 = execSync('stardate',
   { encoding: 'utf8' }).trim();
@@ -28,8 +32,8 @@ const submitRes = await fetch(`${BASE_URL}/generate-video`, {
   body: JSON.stringify({
     model: model1,
     prompt: prompt1,
-    duration: '5s',
-    aspect_ratio: '16:9'
+    duration: duration1,
+    aspect_ratio: aspect_ratio1
   })
 });
 const job = await submitRes.json();
