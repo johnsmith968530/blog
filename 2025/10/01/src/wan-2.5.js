@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 // $Source: /Users/x/Dropbox/2/src/blog/2025/10/01/src/RCS/wan-2.5.js,v $
-// $Date: 2025/10/01 18:17:10 $
-// $Revision: 1.1 $
+// $Date: 2025/10/01 18:56:44 $
+// $Revision: 1.2 $
 
 import { execSync } from 'child_process';
 const execSyncTrim = (x) => execSync(x, { encoding: 'utf8' }).trim();
@@ -31,7 +31,9 @@ const submitRes = await fetch(`${BASE_URL}/generate-video`, {
     model: model1,
     prompt: prompt1,
     duration: duration1,
-    aspect_ratio: aspect_ratio1
+    aspect_ratio: aspect_ratio1,
+    enable_safety_checker: false,
+    showExplicitContent: true
   })
 });
 const job = await submitRes.json();
