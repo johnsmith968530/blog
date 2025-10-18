@@ -67,7 +67,7 @@ fn process_file(file_path: &Path, binary: bool) -> Result<()> {
     let rcs_file = rcs_dir.join(format!("{},v", base.to_string_lossy()));
     
     if !file_path.is_file() {
-        return Ok(());
+        return Err(anyhow!("{} does not exist or is not a file", file_path.display()));
     }
 
     if rcs_file.exists() {
@@ -89,21 +89,19 @@ fn process_file(file_path: &Path, binary: bool) -> Result<()> {
     }
 
     // Initialize new RCS entry
-    if file_path.is_file() {
-        let desc = get_description(&file_path)?;
-        let file_str = file_path.to_string_lossy();
-        
-        if binary {
-            safe_exec("rcs", &["-i", "-kb", &format!("-t-{}", desc), "-x,v", &file_str])?;
-            safe_exec("ci", &["-l", &file_str])?;
-        } else {
-            safe_exec("ci", &[&format!("-t-{}", desc), "-x,v", &file_str])?;
-            safe_exec("co", &[&file_str])?;
-            safe_exec("rcs", &["-l", "-x,v", &file_str])?;
-        }
-        
-        safe_exec("chmod", &["u+w", &file_str])?;
+    let desc = get_description(&file_path)?;
+    let file_str = file_path.to_string_lossy();
+    
+    if binary {
+        safe_exec("rcs", &["-i", "-kb", &format!("-t-{}", desc), "-x,v", &file_str])?;
+        safe_exec("ci", &["-l", &file_str])?;
+    } else {
+        safe_exec("ci", &[&format!("-t-{}", desc), "-x,v", &file_str])?;
+        safe_exec("co", &[&file_str])?;
+        safe_exec("rcs", &["-l", "-x,v", &file_str])?;
     }
+    
+    safe_exec("chmod", &["u+w", &file_str])?;
 
     println!("{}", file_path.display());
     Ok(())
