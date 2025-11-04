@@ -1,6 +1,6 @@
 // $Source: /Users/x/Dropbox/2/src/blog/2025/11/04/src/RCS/enviousBlob.js,v $
-// $Date: 2025/11/04 21:26:32 $
-// $Revision: 2.2 $
+// $Date: 2025/11/04 21:36:25 $
+// $Revision: 2.3 $
 
 const http = require('http');
 const { exec, execFile } = require('child_process');
@@ -86,7 +86,7 @@ const server = http.createServer((req, res) => {
   // Check if this is an envy/get request
   if (pathname.startsWith('/envy/get/')) {
     // Extract arguments after /envy/get/
-    const args = pathname.substring('/envy/get/'.length).split('/').filter(p => p);
+    const args = pathname.substring('/envy/get/'.length).split('/').filter(p => p).map(decodeURIComponent);
     
     if (args.length === 0) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
