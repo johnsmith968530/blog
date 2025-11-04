@@ -1,6 +1,6 @@
 // $Source: /Users/x/Dropbox/2/src/blog/2025/11/03/src/RCS/gitBlobServer.js,v $
-// $Date: 2025/11/04 00:17:07 $
-// $Revision: 1.7 $
+// $Date: 2025/11/04 06:06:53 $
+// $Revision: 1.10 $
 
 const http = require('http');
 const { exec } = require('child_process');
@@ -65,6 +65,13 @@ const MIME_TYPES = {
   // Other
   'wasm': 'application/wasm',
 };
+
+// Helper function to send invalid URL format error
+const sendInvalidUrlError = (res) => {
+  res.writeHead(400, { 'Content-Type': 'text/plain' });
+  res.end('Invalid URL format. Use /git/blob/<40-digit-hex>[.ext] or /git/blob/<mime-type>/<mime-subtype>/<hash>[.ext] or /git/blob/<mime-type>/<mime-subtype>/<charset>/<hash>[.ext]');
+};
+
 const server = http.createServer((req, res) => {
   // Only handle GET requests
   if (req.method !== 'GET') {
@@ -75,22 +82,47 @@ const server = http.createServer((req, res) => {
   // Parse the URL to get the pathname
   const parsedUrl = url.parse(req.url, true);
   const pathname = parsedUrl.pathname;
-  // Extract hash and optional extension from URL
-  // Requires: /git/blob/<40-digit-lowercase-hex>[.ext]
-  const match = pathname.match(/^\/git\/blob\/([a-f0-9]{40})(?:\.([a-z0-9]+))?$/);
   
-  if (!match) {
-    res.writeHead(400, { 'Content-Type': 'text/plain' });
-    res.end('Invalid URL format. Use /git/blob/<40-digit-hex>[.ext]');
+  let gitHash, mimeType;
+  
+  // Split path and count segments to determine format
+  const parts = pathname.split('/').filter(p => p); // Remove empty strings
+  const segmentCount = parts.length;
+  
+  if (segmentCount === 3) {
+    // Format: /git/blob/<hash>[.ext]
+    const match = pathname.match(/^\/git\/blob\/([a-f0-9]{40})(?:\.([a-z0-9]+))?$/);
+    if (!match) {
+      sendInvalidUrlError(res);
+      return;
+    }
+    gitHash = match[1];
+    const fileExtension = match[2] ? match[2].toLowerCase() : null;
+    mimeType = fileExtension && MIME_TYPES[fileExtension] 
+      ? MIME_TYPES[fileExtension] 
+      : 'application/octet-stream';
+  } else if (segmentCount === 5) {
+    // Format: /git/blob/<mime-type>/<mime-subtype>/<hash>[.ext]
+    const match = pathname.match(/^\/git\/blob\/([a-z0-9]+)\/([a-z0-9+.-]+)\/([a-f0-9]{40})(?:\.([a-z0-9]+))?$/i);
+    if (!match) {
+      sendInvalidUrlError(res);
+      return;
+    }
+    gitHash = match[3];
+    mimeType = `${match[1]}/${match[2]}`;
+  } else if (segmentCount === 6) {
+    // Format: /git/blob/<mime-type>/<mime-subtype>/<charset>/<hash>[.ext]
+    const match = pathname.match(/^\/git\/blob\/([a-z0-9]+)\/([a-z0-9+.-]+)\/([a-z0-9-]+)\/([a-f0-9]{40})(?:\.([a-z0-9]+))?$/i);
+    if (!match) {
+      sendInvalidUrlError(res);
+      return;
+    }
+    gitHash = match[4];
+    mimeType = `${match[1]}/${match[2]}; charset=${match[3]}`;
+  } else {
+    sendInvalidUrlError(res);
     return;
   }
-  const gitHash = match[1];
-  const fileExtension = match[2] ? match[2].toLowerCase() : null;
-  
-  // Determine MIME type based on extension
-  const mimeType = fileExtension && MIME_TYPES[fileExtension] 
-    ? MIME_TYPES[fileExtension] 
-    : 'application/octet-stream';
   // Execute git cat-file command
   exec(`git cat-file blob ${gitHash}`, { encoding: 'buffer', maxBuffer: 10 * 1024 * 1024 }, (error, stdout, stderr) => {
     if (error) {
@@ -109,8 +141,14 @@ const server = http.createServer((req, res) => {
 });
 server.listen(PORT, '127.0.0.1', () => {
   console.log(`Git blob server running on http://127.0.0.1:${PORT}`);
-  console.log(`Usage: http://127.0.0.1:${PORT}/git/blob/<40-digit-git-hash>[.ext]`);
-  console.log(`Example: http://127.0.0.1:${PORT}/git/blob/a1b2c3d4e5f6789012345678901234567890abcd.js`);
+  console.log(`Usage formats:`);
+  console.log(`  1. http://127.0.0.1:${PORT}/git/blob/<40-digit-git-hash>[.ext]`);
+  console.log(`  2. http://127.0.0.1:${PORT}/git/blob/<mime-type>/<mime-subtype>/<40-digit-git-hash>[.ext]`);
+  console.log(`  3. http://127.0.0.1:${PORT}/git/blob/<mime-type>/<mime-subtype>/<charset>/<40-digit-git-hash>[.ext]`);
+  console.log(`Examples:`);
+  console.log(`  http://127.0.0.1:${PORT}/git/blob/a1b2c3d4e5f6789012345678901234567890abcd.js`);
+  console.log(`  http://127.0.0.1:${PORT}/git/blob/text/html/0b2d3b2a5840e0ebbc4fc75cbdf61e04e96669df.jpg`);
+  console.log(`  http://127.0.0.1:${PORT}/git/blob/text/html/utf-8/0b2d3b2a5840e0ebbc4fc75cbdf61e04e96669df.jpg`);
 });
 
 // vim: set et ff=unix ft=javascript nocp sts=2 sw=2 ts=2:
