@@ -1,0 +1,55 @@
+# Ollama API
+
+## Docs
+- [Endpoints](https://ollama.apidog.io/endpoints-875546m0.md): 
+- [Conventions](https://ollama.apidog.io/conventions-875547m0.md): 
+- Generate a completion [Overview](https://ollama.apidog.io/overview-875553m0.md): 
+- Generate a chat completion [Overview](https://ollama.apidog.io/overview-875575m0.md): 
+- Create a Model [Overview](https://ollama.apidog.io/overview-875579m0.md): 
+- Check if a Blob Exists [Overview](https://ollama.apidog.io/overview-875584m0.md): 
+- Push a Blob [Overview](https://ollama.apidog.io/overview-875588m0.md): 
+- List Local Models [Overview](https://ollama.apidog.io/overview-875591m0.md): 
+- Show Model Information [Overview](https://ollama.apidog.io/overview-875594m0.md): 
+- Copy a Model [Overview](https://ollama.apidog.io/overview-875597m0.md): 
+- Delete a Model [Overview](https://ollama.apidog.io/overview-875600m0.md): 
+- Pull a Model [Overview](https://ollama.apidog.io/overview-875601m0.md): 
+- Push a Model [Overview](https://ollama.apidog.io/overview-875606m0.md): 
+- Generate Embeddings [Overview](https://ollama.apidog.io/overview-875608m0.md): 
+- List Running Models [Overview](https://ollama.apidog.io/overview-875609m0.md): 
+- Generate Embedding [Overview](https://ollama.apidog.io/overview-875614m0.md): 
+- Version [Overview](https://ollama.apidog.io/overview-875615m0.md): 
+
+## API Docs
+- Generate a completion [Generate request (Streaming)](https://ollama.apidog.io/generate-request-streaming-14807730e0.md): 
+- Generate a completion [Request (No streaming)](https://ollama.apidog.io/request-no-streaming-14807763e0.md): A response can be received in one reply when streaming is off.
+- Generate a completion [Request (with suffix)](https://ollama.apidog.io/request-with-suffix-14807774e0.md): 
+- Generate a completion [Request (Structured outputs)](https://ollama.apidog.io/request-structured-outputs-14807784e0.md): 
+- Generate a completion [Request (JSON mode) ](https://ollama.apidog.io/request-json-mode-14807788e0.md): Important 
+- Generate a completion [Request (with images)](https://ollama.apidog.io/request-with-images-14808073e0.md): To submit images to multimodal models such as `llava` or `bakllava`, provide a list of base64-encoded `images`:
+- Generate a completion [Request (Raw Mode)](https://ollama.apidog.io/request-raw-mode-14808075e0.md): In some cases, you may wish to bypass the templating system and provide a full prompt. In this case, you can use the `raw` parameter to disable templating. Also note that raw mode will not return a context.
+- Generate a completion [Request (Reproducible outputs)](https://ollama.apidog.io/request-reproducible-outputs-14808079e0.md): For reproducible outputs, set `seed` to a number:
+- Generate a completion [Generate request (With options)](https://ollama.apidog.io/generate-request-with-options-14808431e0.md): If you want to set custom options for the model at runtime rather than in the Modelfile, you can do so with the `options` parameter. This example sets every available option, but you can set any of them individually and omit the ones you do not want to override.
+- Generate a completion [Load a model](https://ollama.apidog.io/load-a-model-14808479e0.md): If an empty prompt is provided, the model will be loaded into memory.
+- Generate a completion [Unload a model](https://ollama.apidog.io/unload-a-model-14808502e0.md): If an empty prompt is provided and the `keep_alive` parameter is set to `0`, a model will be unloaded from memory.
+- Generate a chat completion [Chat Request (Streaming) ](https://ollama.apidog.io/chat-request-streaming-14808548e0.md): Send a chat message with a streaming response.
+- Generate a chat completion [Chat request (No streaming)](https://ollama.apidog.io/chat-request-no-streaming-14808920e0.md): 
+- Generate a chat completion [Chat request (Structured outputs)](https://ollama.apidog.io/chat-request-structured-outputs-14808921e0.md): 
+- Generate a chat completion [Chat request (With History)](https://ollama.apidog.io/chat-request-with-history-14808931e0.md): Send a chat message with a conversation history. You can use this same approach to start the conversation using multi-shot or chain-of-thought prompting.
+- Generate a chat completion [Chat request (with images)](https://ollama.apidog.io/chat-request-with-images-14808934e0.md): Send a chat message with images. The images should be provided as an array, with the individual images encoded in Base64.
+- Generate a chat completion [Chat request (Reproducible outputs)](https://ollama.apidog.io/chat-request-reproducible-outputs-14808935e0.md): 
+- Generate a chat completion [Chat request (with tools)](https://ollama.apidog.io/chat-request-with-tools-14808943e0.md): 
+- Generate a chat completion [Load a model](https://ollama.apidog.io/load-a-model-14808945e0.md): If the messages array is empty, the model will be loaded into memory.
+- Generate a chat completion [Unload a model ](https://ollama.apidog.io/unload-a-model-14809030e0.md): If the messages array is empty and the `keep_alive` parameter is set to `0`, a model will be unloaded from memory.
+- Create a Model [Create a new model](https://ollama.apidog.io/create-a-new-model-14809038e0.md): Create a new model from an existing model.
+- Create a Model [Quantize a model](https://ollama.apidog.io/quantize-a-model-14809046e0.md): Quantize a non-quantized model.
+- Create a Model [Create a model from GGUF](https://ollama.apidog.io/create-a-model-from-gguf-14809065e0.md): Create a model from a GGUF file. The `files` parameter should be filled out with the file name and SHA256 digest of the GGUF file you wish to use. Use [/api/blobs/:digest](https://github.com/ollama/ollama/blob/main/docs/api.md#push-a-blob) to push the GGUF file to the server before calling this API.
+- Create a Model [Create a model from a Safetensors directory](https://ollama.apidog.io/create-a-model-from-a-safetensors-directory-14809068e0.md): The `files` parameter should include a dictionary of files for the safetensors model which includes the file names and SHA256 digest of each file. Use [/api/blobs/:digest](https://github.com/ollama/ollama/blob/main/docs/api.md#push-a-blob) to first push each of the files to the server before calling this API. Files will remain in the cache until the Ollama server is restarted.
+- List Local Models [Examples](https://ollama.apidog.io/examples-14809129e0.md): 
+- Show Model Information [Examples](https://ollama.apidog.io/examples-14809153e0.md): 
+- Copy a Model [Examples](https://ollama.apidog.io/examples-14809170e0.md): 
+- Delete a Model [Examples](https://ollama.apidog.io/examples-14809179e0.md): 
+- Pull a Model [Examples](https://ollama.apidog.io/examples-14809384e0.md): 
+- Generate Embeddings [Examples](https://ollama.apidog.io/examples-14809411e0.md): 
+- Generate Embeddings [Request (Multiple input)](https://ollama.apidog.io/request-multiple-input-14809446e0.md): 
+- List Running Models [Examples](https://ollama.apidog.io/examples-14809455e0.md): 
+- Generate Embedding [Examples](https://ollama.apidog.io/examples-14809545e0.md): 
