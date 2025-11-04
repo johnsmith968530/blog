@@ -1,9 +1,9 @@
 // $Source: /Users/x/Dropbox/2/src/blog/2025/11/04/src/RCS/enviousBlob.js,v $
-// $Date: 2025/11/04 21:36:25 $
-// $Revision: 2.3 $
+// $Date: 2025/11/04 21:57:20 $
+// $Revision: 2.6 $
 
 const http = require('http');
-const { exec, execFile } = require('child_process');
+const { execFile } = require('child_process');
 const url = require('url');
 const PORT = 31714;
 // MIME type mapping for common file extensions
@@ -155,7 +155,7 @@ const server = http.createServer((req, res) => {
     return;
   }
   // Execute git cat-file command
-  exec(`git cat-file blob ${gitHash}`, { encoding: 'buffer', maxBuffer: 10 * 1024 * 1024 }, (error, stdout, stderr) => {
+  execFile('git', ['cat-file', 'blob', gitHash], { encoding: 'buffer', maxBuffer: 10 * 1024 * 1024 }, (error, stdout, stderr) => {
     if (error) {
       // Handle git errors (e.g., invalid hash, not a blob, etc.)
       res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -176,10 +176,12 @@ server.listen(PORT, '127.0.0.1', () => {
   console.log(`  1. http://127.0.0.1:${PORT}/git/blob/<40-digit-git-hash>[.ext]`);
   console.log(`  2. http://127.0.0.1:${PORT}/git/blob/<mime-type>/<mime-subtype>/<40-digit-git-hash>[.ext]`);
   console.log(`  3. http://127.0.0.1:${PORT}/git/blob/<mime-type>/<mime-subtype>/<charset>/<40-digit-git-hash>[.ext]`);
+  console.log(`  4. http://127.0.0.1:${PORT}/envy/get/<section>/<arg1>/...`);
   console.log(`Examples:`);
   console.log(`  http://127.0.0.1:${PORT}/git/blob/a1b2c3d4e5f6789012345678901234567890abcd.js`);
   console.log(`  http://127.0.0.1:${PORT}/git/blob/text/html/0b2d3b2a5840e0ebbc4fc75cbdf61e04e96669df.jpg`);
   console.log(`  http://127.0.0.1:${PORT}/git/blob/text/html/utf-8/0b2d3b2a5840e0ebbc4fc75cbdf61e04e96669df.jpg`);
+  console.log(`  http://127.0.0.1:${PORT}/envy/get/local/tmp/1`);
 });
 
 // vim: set et ff=unix ft=javascript nocp sts=2 sw=2 ts=2:
