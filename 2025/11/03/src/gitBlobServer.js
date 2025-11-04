@@ -1,7 +1,7 @@
 // $Source: /Users/x/Dropbox/2/src/blog/2025/11/03/src/RCS/gitBlobServer.js,v $
-// $Date: 2025/11/03 20:52:49 $
-// $Revision: 1.4 $
-//
+// $Date: 2025/11/04 00:17:07 $
+// $Revision: 1.7 $
+
 const http = require('http');
 const { exec } = require('child_process');
 const url = require('url');
@@ -29,6 +29,10 @@ const MIME_TYPES = {
   'svg': 'image/svg+xml',
   'webp': 'image/webp',
   'ico': 'image/x-icon',
+
+  // Audio
+  'mp3': 'audio/mpeg',
+  'wav': 'audio/wav',
   
   // Documents
   'pdf': 'application/pdf',
@@ -103,7 +107,7 @@ const server = http.createServer((req, res) => {
     res.end(stdout);
   });
 });
-server.listen(PORT, () => {
+server.listen(PORT, '127.0.0.1', () => {
   console.log(`Git blob server running on http://127.0.0.1:${PORT}`);
   console.log(`Usage: http://127.0.0.1:${PORT}/git/blob/<40-digit-git-hash>[.ext]`);
   console.log(`Example: http://127.0.0.1:${PORT}/git/blob/a1b2c3d4e5f6789012345678901234567890abcd.js`);
