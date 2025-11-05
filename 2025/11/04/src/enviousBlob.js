@@ -1,6 +1,7 @@
+#!/usr/bin/env node
 // $Source: /Users/x/Dropbox/2/src/blog/2025/11/04/src/RCS/enviousBlob.js,v $
-// $Date: 2025/11/04 21:57:20 $
-// $Revision: 2.6 $
+// $Date: 2025/11/05 02:27:11 $
+// $Revision: 2.7 $
 
 const http = require('http');
 const { execFile } = require('child_process');
