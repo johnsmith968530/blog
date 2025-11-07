@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A5 Rounded Rectangle Outline</title>
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+  }
+  #controls {
+    margin-bottom: 10px;
+  }
+  label {
+    margin-right: 10px;
+  }
+  canvas {
+    border: 1px solid #ccc;
+    display: block;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+  <h1>A5 Rounded Rectangle Outline</h1>
+    <table style="font-family:monospace; font-size: 0.5em;">
+      <tr><td>$Source: /Users/x/Dropbox/2/src/blog/2025/11/07/src/RCS/A5.html,v $</td></tr>
+      <tr><td>$Date: 2025/11/07 18:07:28 $</td></tr>
+      <tr><td>$Revision: 1.2 $</td></tr>
+    </table>
+  <p>
+  <div id="controls">
+    <label>
+      Scale:
+      <input type="number" id="scale" value="1.0" step="0.01" min="0.1">
+    </label>
+    <label>
+      Corner radius (mm):
+      <input type="number" id="radius" value="10" step="1" min="0">
+    </label>
+    <button id="redraw">Redraw</button>
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const MM_TO_PX = 3.7795275591; // Approx conversion at 96 DPI
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    function drawRoundedRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    function redraw() {
+      const scale = parseFloat(document.getElementById('scale').value);
+      const radiusMM = parseFloat(document.getElementById('radius').value);
+
+      const widthMM = 148;
+      const heightMM = 210;
+
+      const widthPx = widthMM * MM_TO_PX * scale;
+      const heightPx = heightMM * MM_TO_PX * scale;
+      const radiusPx = radiusMM * MM_TO_PX * scale;
+
+      canvas.width = widthPx + 20;
+      canvas.height = heightPx + 20;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "black";
+      drawRoundedRect(ctx, 10, 10, widthPx, heightPx, radiusPx);
+    }
+
+    document.getElementById('redraw').addEventListener('click', redraw);
+
+    // Draw initial
+    redraw();
+  </script>
+</body>
+</html>
+<!-- vim: set et ff=unix ft=html nocp sts=2 sw=2 ts=2: -->
