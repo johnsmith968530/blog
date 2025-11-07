@@ -1,6 +1,8 @@
-* $Source: /Users/x/Dropbox/2/src/blog/2025/11/06/RCS/A_Few_Notes_on_the_Culture.md,v $
-* $Date: 2025/10/24 18:50:13 $
-* $Revision: 1.3 $
+```text
+$Source: /Users/x/Dropbox/2/src/blog/2025/11/06/RCS/A_Few_Notes_on_the_Culture.md,v $
+$Date: 2025/11/07 07:13:31 $
+$Revision: 1.4 $
+```
 
 # A FEW NOTES ON THE CULTURE
 
@@ -198,4 +200,6 @@ Copyright 1994 Iain M Banks
 Commercial use only by permission.  
 Other uses, distribution, reproduction, tearing to shreds etc are freely encouraged provided the source is acknowledged.
 
-* vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
+```text
+vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
+```
