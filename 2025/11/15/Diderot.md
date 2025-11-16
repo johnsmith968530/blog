@@ -1,6 +1,9 @@
-* $Source: /Users/x/Dropbox/2/src/blog/2025/11/15/RCS/Diderot.md,v $
-* $Date: 2025/11/16 07:12:19 $
-* $Revision: 1.1 $
+
+```text
+$Source: /Users/x/Dropbox/2/src/blog/2025/11/15/RCS/Diderot.md,v $
+$Date: 2025/11/16 07:13:55 $
+$Revision: 1.2 $
+```
 
 From https://www.youtube.com/watch?v=7E_f-J6Ff2c retrieved 2025.874794520547994.
 
@@ -36,4 +39,6 @@ generation that will surpass us and leave us behind, then we
 don't believe in progress because that's what progress demands of
 us. And that's what it means to be human.
 
-* vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
+```text
+vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
+```
