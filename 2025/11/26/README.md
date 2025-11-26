@@ -1,7 +1,7 @@
 ```text
 $Source: /Users/x/Dropbox/2/src/blog/2025/11/26/RCS/README.md,v $
-$Date: 2025/11/26 19:48:02 $
-$Revision: 1.2 $
+$Date: 2025/11/26 20:24:51 $
+$Revision: 1.3 $
 ```
 
 # h345 APFS Container and volumes
@@ -40,6 +40,18 @@ Created new APFS Volume disk7s2
 Mounting APFS Volume
 Setting volume permissions
 Disk from APFS operation: disk7s2
+Finished APFS operation on disk7
+
+x@h353 ~ % sudo diskutil apfs addVolume disk7 APFSX svnjak65
+Password:
+Will export new APFS (Case-sensitive) Volume "svnjak65" from APFS Container Reference disk7
+Started APFS operation on disk7
+Preparing to add APFS Volume to APFS Container disk7
+Creating APFS Volume
+Created new APFS Volume disk7s3
+Mounting APFS Volume
+Setting volume permissions
+Disk from APFS operation: disk7s3
 Finished APFS operation on disk7
 ```
 
