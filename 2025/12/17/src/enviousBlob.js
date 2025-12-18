@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 // $Source: /Users/x/Dropbox/2/src/blog/2025/12/17/src/RCS/enviousBlob.js,v $
-// $Date: 2025/12/18 05:45:10 $
-// $Revision: 2.19 $
+// $Date: 2025/12/18 05:51:13 $
+// $Revision: 2.20 $
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -21,6 +21,7 @@ const SHA256_LOOKUP_FILES = [
   '/Volumes/h358/mirror/2/sha256sums.txt',
   '/Users/x/Nextcloud/2/data/sha2_256/mirror_sha256sums.txt',
   '/Users/x/Nextcloud/2/data/sha2_256/Nextcloud_checksums.txt',
+  '/Users/x/Dropbox/2/Music/sha256sums.txt',
   '/Users/x/Dropbox/3/Art/sha256sums.txt',
   '/Users/x/Dropbox/3/Mirror/sha256sums.txt',
   '/Users/x/Dropbox/3/Videos/sha256sums.txt',
