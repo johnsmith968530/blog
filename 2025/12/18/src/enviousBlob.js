@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-// $Source: /Users/x/Dropbox/2/src/blog/2025/12/18/src/RCS/enviousBlob.js,v $
-// $Date: 2025/12/18 19:46:01 $
-// $Revision: 2.23 $
+const RCS_SOURCE='$Source: /Users/x/Dropbox/2/src/blog/2025/12/18/src/RCS/enviousBlob.js,v $';
+const RCS_DATE='$Date: 2025/12/18 21:56:06 $';
+const RCS_REVISION='$Revision: 2.27 $';
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -26,7 +26,7 @@ const getTimestamp = () => {
 
 // SHA-256 lookup files
 const SHA256_LOOKUP_FILES = [
-  '/Volumes/h358/com/audiobooksnow/audiobook/the-hydrogen-sonata/206708/sha256sums.txt',
+  '/Volumes/h358/com/audiobooksnow/sha256sums.txt',
   '/Volumes/h358/yt-dlp/com/instagram/1/sha256sums.txt',
   '/Volumes/h358/yt-dlp/com/tiktok/3/sha256sums.txt',
   '/Volumes/h358/yt-dlp/com/x/3/sha256sums.txt',
@@ -34,7 +34,10 @@ const SHA256_LOOKUP_FILES = [
   '/Users/x/Nextcloud/2/data/sha2_256/mirror_sha256sums.txt',
   '/Users/x/Nextcloud/2/data/sha2_256/Nextcloud_checksums.txt',
   '/Users/x/Dropbox/1/Medical/Chris/sha256sums.txt',
+  '/Users/x/Dropbox/2/Avatars/sha256sums.txt',
+  '/Users/x/Dropbox/2/Dumpling/sha256sums.txt',
   '/Users/x/Dropbox/2/Music/sha256sums.txt',
+  '/Users/x/Dropbox/2/Travel/sha256sums.txt',
   '/Users/x/Dropbox/3/Art/sha256sums.txt',
   '/Users/x/Dropbox/3/Mirror/sha256sums.txt',
   '/Users/x/Dropbox/3/Videos/sha256sums.txt',
@@ -61,7 +64,11 @@ Examples:
   http://${SERVER_HOST}:${PORT}/sha/2/256/blob/image/jpeg/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.jpg
   http://${SERVER_HOST}:${PORT}/envy/get/local/tmp/1
   http://${SERVER_HOST}:${PORT}/taskmaster/inspect/example
-  http://${SERVER_HOST}:${PORT}/taskmaster/print/example`;
+  http://${SERVER_HOST}:${PORT}/taskmaster/print/example
+
+${RCS_SOURCE}
+${RCS_DATE}
+${RCS_REVISION}`;
 // MIME type mapping for common file extensions
 const MIME_TYPES = {
   // Text
@@ -89,6 +96,11 @@ const MIME_TYPES = {
   // Audio
   'mp3': 'audio/mpeg',
   'wav': 'audio/wav',
+
+  // Video
+  'mkv': 'video/x-matroska',
+  'mp4': 'video/mp4',
+  'webm': 'video/webm',
   
   // Documents
   'pdf': 'application/pdf',
@@ -341,6 +353,7 @@ const server = http.createServer((req, res) => {
     const charset = charsetMatch ? charsetMatch[1] : null;
     
     // Log the serving details to console
+    console.log('---');
     console.log('Timestamp:', getTimestamp());
     console.log('SHA-256 Hash:', sha256Hash);
     console.log('Lookup File:', lookupFile);
@@ -349,7 +362,6 @@ const server = http.createServer((req, res) => {
     if (charset) {
       console.log('Charset:', charset);
     }
-    console.log('---');
     
     // Get file stats first to check size and handle range requests
     fs.stat(filename, (statError, stats) => {
@@ -482,13 +494,13 @@ const server = http.createServer((req, res) => {
   const gitCharset = gitCharsetMatch ? gitCharsetMatch[1] : null;
   
   // Log the serving details to console
+  console.log('---');
   console.log('Timestamp:', getTimestamp());
   console.log('Git Hash:', gitHash);
   console.log('MIME Type:', gitCharset ? mimeType.split(';')[0].trim() : mimeType);
   if (gitCharset) {
     console.log('Charset:', gitCharset);
   }
-  console.log('---');
   
   // Execute git cat-file command
   execFile('git', ['cat-file', 'blob', gitHash],
