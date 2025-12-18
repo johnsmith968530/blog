@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
 // $Source: /Users/x/Dropbox/2/src/blog/2025/12/17/src/RCS/enviousBlob.js,v $
-// $Date: 2025/12/18 03:32:48 $
-// $Revision: 2.15 $
+// $Date: 2025/12/18 03:52:23 $
+// $Revision: 2.17 $
 
 const http = require('http');
 const { execFile } = require('child_process');
 const fs = require('fs');
 const url = require('url');
+const SERVER_HOST = '127.0.0.1';
 const PORT = 31714;
 const MAX_BUFFER = 1024 * 1024 * 1024;
 
@@ -25,24 +26,24 @@ const SHA256_LOOKUP_FILES = [
 
 // Usage information constant
 const USAGE_INFO = `Usage formats:
-  1. http://127.0.0.1:${PORT}/git/blob/<40-digit-git-hash>[.ext]
-  2. http://127.0.0.1:${PORT}/git/blob/<mime-type>/<mime-subtype>/<40-digit-git-hash>[.ext]
-  3. http://127.0.0.1:${PORT}/git/blob/<mime-type>/<mime-subtype>/<charset>/<40-digit-git-hash>[.ext]
-  4. http://127.0.0.1:${PORT}/sha/2/256/blob/<64-digit-sha256-hash>[.ext]
-  5. http://127.0.0.1:${PORT}/sha/2/256/blob/<mime-type>/<mime-subtype>/<64-digit-sha256-hash>[.ext]
-  6. http://127.0.0.1:${PORT}/sha/2/256/blob/<mime-type>/<mime-subtype>/<charset>/<64-digit-sha256-hash>[.ext]
-  7. http://127.0.0.1:${PORT}/envy/get/<section>/<arg1>/...
-  8. http://127.0.0.1:${PORT}/taskmaster/inspect/<string>
-  9. http://127.0.0.1:${PORT}/taskmaster/print/<string>
+  1. http://${SERVER_HOST}:${PORT}/git/blob/<40-digit-git-hash>[.ext]
+  2. http://${SERVER_HOST}:${PORT}/git/blob/<mime-type>/<mime-subtype>/<40-digit-git-hash>[.ext]
+  3. http://${SERVER_HOST}:${PORT}/git/blob/<mime-type>/<mime-subtype>/<charset>/<40-digit-git-hash>[.ext]
+  4. http://${SERVER_HOST}:${PORT}/sha/2/256/blob/<64-digit-sha256-hash>[.ext]
+  5. http://${SERVER_HOST}:${PORT}/sha/2/256/blob/<mime-type>/<mime-subtype>/<64-digit-sha256-hash>[.ext]
+  6. http://${SERVER_HOST}:${PORT}/sha/2/256/blob/<mime-type>/<mime-subtype>/<charset>/<64-digit-sha256-hash>[.ext]
+  7. http://${SERVER_HOST}:${PORT}/envy/get/<section>/<arg1>/...
+  8. http://${SERVER_HOST}:${PORT}/taskmaster/inspect/<string>
+  9. http://${SERVER_HOST}:${PORT}/taskmaster/print/<string>
 Examples:
-  http://127.0.0.1:${PORT}/git/blob/a1b2c3d4e5f6789012345678901234567890abcd.js
-  http://127.0.0.1:${PORT}/git/blob/text/html/0b2d3b2a5840e0ebbc4fc75cbdf61e04e96669df.jpg
-  http://127.0.0.1:${PORT}/git/blob/text/html/utf-8/0b2d3b2a5840e0ebbc4fc75cbdf61e04e96669df.jpg
-  http://127.0.0.1:${PORT}/sha/2/256/blob/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.txt
-  http://127.0.0.1:${PORT}/sha/2/256/blob/image/jpeg/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.jpg
-  http://127.0.0.1:${PORT}/envy/get/local/tmp/1
-  http://127.0.0.1:${PORT}/taskmaster/inspect/example
-  http://127.0.0.1:${PORT}/taskmaster/print/example`;
+  http://${SERVER_HOST}:${PORT}/git/blob/a1b2c3d4e5f6789012345678901234567890abcd.js
+  http://${SERVER_HOST}:${PORT}/git/blob/text/html/0b2d3b2a5840e0ebbc4fc75cbdf61e04e96669df.jpg
+  http://${SERVER_HOST}:${PORT}/git/blob/text/html/utf-8/0b2d3b2a5840e0ebbc4fc75cbdf61e04e96669df.jpg
+  http://${SERVER_HOST}:${PORT}/sha/2/256/blob/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.txt
+  http://${SERVER_HOST}:${PORT}/sha/2/256/blob/image/jpeg/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.jpg
+  http://${SERVER_HOST}:${PORT}/envy/get/local/tmp/1
+  http://${SERVER_HOST}:${PORT}/taskmaster/inspect/example
+  http://${SERVER_HOST}:${PORT}/taskmaster/print/example`;
 // MIME type mapping for common file extensions
 const MIME_TYPES = {
   // Text
@@ -104,7 +105,7 @@ const MIME_TYPES = {
 };
 
 // Helper function to lookup SHA-256 hash in sha256sums.txt files
-// Returns the absolute filename if found, null otherwise
+// Returns an object with filename and lookupFile if found, null otherwise
 const lookupSha256Hash = (hash) => {
   // Normalize hash to lowercase for case-insensitive comparison
   const normalizedHash = hash.toLowerCase();
@@ -133,7 +134,10 @@ const lookupSha256Hash = (hash) => {
           if (fileHash === normalizedHash) {
             // Resolve the filename relative to the sha256sums.txt file's directory
             // If filename is already absolute, path.resolve will return it as-is
-            return path.resolve(lookupDir, filename);
+            return {
+              filename: path.resolve(lookupDir, filename),
+              lookupFile: lookupFile
+            };
           }
         }
       }
@@ -304,13 +308,15 @@ const server = http.createServer((req, res) => {
     }
     
     // Lookup the filename for this SHA-256 hash
-    const filename = lookupSha256Hash(sha256Hash);
+    const lookupResult = lookupSha256Hash(sha256Hash);
     
-    if (!filename) {
+    if (!lookupResult) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       res.end(`Error: SHA-256 hash not found: ${sha256Hash}`);
       return;
     }
+    
+    const { filename, lookupFile } = lookupResult;
     
     // Parse charset from mimeType if present
     const charsetMatch = mimeType.match(/;\s*charset=([a-z0-9-]+)/i);
@@ -318,6 +324,7 @@ const server = http.createServer((req, res) => {
     
     // Log the serving details to console
     console.log('SHA-256 Hash:', sha256Hash);
+    console.log('Lookup File:', lookupFile);
     console.log('Filename:', filename);
     console.log('MIME Type:', charset ? mimeType.split(';')[0].trim() : mimeType);
     if (charset) {
@@ -416,8 +423,8 @@ const server = http.createServer((req, res) => {
     res.end(stdout);
   });
 });
-server.listen(PORT, '127.0.0.1', () => {
-  console.log(`Git blob server running on http://127.0.0.1:${PORT}`);
+server.listen(PORT, SERVER_HOST, () => {
+  console.log(`Git blob server running on http://${SERVER_HOST}:${PORT}`);
   console.log(USAGE_INFO);
 });
 
