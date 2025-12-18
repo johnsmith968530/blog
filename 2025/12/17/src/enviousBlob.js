@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 // $Source: /Users/x/Dropbox/2/src/blog/2025/12/17/src/RCS/enviousBlob.js,v $
-// $Date: 2025/12/18 03:19:12 $
-// $Revision: 2.13 $
+// $Date: 2025/12/18 03:32:48 $
+// $Revision: 2.15 $
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -312,6 +312,19 @@ const server = http.createServer((req, res) => {
       return;
     }
     
+    // Parse charset from mimeType if present
+    const charsetMatch = mimeType.match(/;\s*charset=([a-z0-9-]+)/i);
+    const charset = charsetMatch ? charsetMatch[1] : null;
+    
+    // Log the serving details to console
+    console.log('SHA-256 Hash:', sha256Hash);
+    console.log('Filename:', filename);
+    console.log('MIME Type:', charset ? mimeType.split(';')[0].trim() : mimeType);
+    if (charset) {
+      console.log('Charset:', charset);
+    }
+    console.log('---');
+    
     // Read and serve the file
     fs.readFile(filename, (error, data) => {
       if (error) {
@@ -370,6 +383,19 @@ const server = http.createServer((req, res) => {
     sendInvalidUrlError(res);
     return;
   }
+  
+  // Parse charset from mimeType if present
+  const gitCharsetMatch = mimeType.match(/;\s*charset=([a-z0-9-]+)/i);
+  const gitCharset = gitCharsetMatch ? gitCharsetMatch[1] : null;
+  
+  // Log the serving details to console
+  console.log('Git Hash:', gitHash);
+  console.log('MIME Type:', gitCharset ? mimeType.split(';')[0].trim() : mimeType);
+  if (gitCharset) {
+    console.log('Charset:', gitCharset);
+  }
+  console.log('---');
+  
   // Execute git cat-file command
   execFile('git', ['cat-file', 'blob', gitHash],
     {
