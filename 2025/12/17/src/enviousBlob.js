@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 // $Source: /Users/x/Dropbox/2/src/blog/2025/12/17/src/RCS/enviousBlob.js,v $
-// $Date: 2025/12/17 23:02:31 $
-// $Revision: 2.11 $
+// $Date: 2025/12/18 01:02:09 $
+// $Revision: 2.12 $
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -14,6 +14,9 @@ const MAX_BUFFER = 1024 * 1024 * 1024;
 // SHA-256 lookup files
 const SHA256_LOOKUP_FILES = [
   '/Volumes/h358/com/audiobooksnow/audiobook/the-hydrogen-sonata/206708/sha256sums.txt',
+  '/Volumes/h358/yt-dlp/com/instagram/1/sha256sums.txt',
+  '/Volumes/h358/yt-dlp/com/tiktok/3/sha256sums.txt',
+  '/Volumes/h358/yt-dlp/com/x/3/sha256sums.txt',
   '/Volumes/h358/mirror/2/sha256sums.txt'
 ];
 
