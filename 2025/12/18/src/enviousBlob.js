@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const RCS_SOURCE='$Source: /Users/x/Dropbox/2/src/blog/2025/12/18/src/RCS/enviousBlob.js,v $';
-const RCS_DATE='$Date: 2025/12/18 21:56:06 $';
-const RCS_REVISION='$Revision: 2.27 $';
+const RCS_DATE='$Date: 2025/12/18 22:15:54 $';
+const RCS_REVISION='$Revision: 3.2 $';
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -44,6 +44,99 @@ const SHA256_LOOKUP_FILES = [
   '/Users/x/Dropbox/Camera Uploads/sha256sums.txt',
   '/Users/x/Dropbox/Screenshots/sha256sums.txt'
 ];
+
+// SHA-256 cache: Map<hash, {filename, lookupFile}>
+const sha256Cache = new Map();
+
+// File watchers for sha256sums.txt files
+const sha256FileWatchers = [];
+
+// Initialize the SHA-256 cache by reading all lookup files
+const initializeSha256Cache = () => {
+  const path = require('path');
+  const startTime = Date.now();
+  
+  console.log('=== Initializing SHA-256 cache ===');
+  
+  // Clear existing cache and watchers
+  sha256Cache.clear();
+  sha256FileWatchers.forEach(watcher => watcher.close());
+  sha256FileWatchers.length = 0;
+  
+  let totalHashes = 0;
+  let duplicateCount = 0;
+  
+  for (const lookupFile of SHA256_LOOKUP_FILES) {
+    let fileHashCount = 0;
+    
+    // Read the sha256sums.txt file synchronously
+    // Fail immediately if file doesn't exist or can't be read
+    const content = fs.readFileSync(lookupFile, 'utf8');
+    const lines = content.split('\n');
+    
+    // Get the directory containing the sha256sums.txt file
+    const lookupDir = path.dirname(lookupFile);
+    
+    for (const line of lines) {
+      // Skip empty lines
+      if (!line.trim()) continue;
+      
+      // Standard sha256sum format: <hash>  <filename>
+      // Hash is 64 characters, followed by two spaces, then filename
+      const match = line.match(/^([a-f0-9]{64})\s+(.+)$/i);
+      if (match) {
+        const fileHash = match[1].toLowerCase();
+        const filename = match[2];
+        
+        // Resolve the filename relative to the sha256sums.txt file's directory
+        const resolvedFilename = path.resolve(lookupDir, filename);
+        
+        // Check if this hash already exists in the cache
+        if (sha256Cache.has(fileHash)) {
+          duplicateCount++;
+          // const existing = sha256Cache.get(fileHash);
+          // console.log(`Warning: Duplicate hash ${fileHash}`);
+          // console.log(`  Existing: ${existing.filename} (from ${existing.lookupFile})`);
+          // console.log(`  New:      ${resolvedFilename} (from ${lookupFile})`);
+        } else {
+          // Store in cache
+          sha256Cache.set(fileHash, {
+            filename: resolvedFilename,
+            lookupFile: lookupFile
+          });
+        }
+        
+        fileHashCount++;
+        totalHashes++;
+      }
+    }
+    
+    console.log(`Loaded ${fileHashCount} hashes from: ${lookupFile}`);
+    
+    // Set up file watcher for this lookup file
+    try {
+      const watcher = fs.watch(lookupFile, (eventType, filename) => {
+        console.log(`\n!!! File change detected: ${lookupFile} (${eventType})`);
+        console.log('!!! Reinitializing SHA-256 cache...\n');
+        // Reinitialize the entire cache when any file changes
+        initializeSha256Cache();
+      });
+      sha256FileWatchers.push(watcher);
+    } catch (watchError) {
+      // Fail immediately if we can't watch the file
+      throw new Error(`Failed to watch file ${lookupFile}: ${watchError.message}`);
+    }
+  }
+  
+  const elapsedTime = Date.now() - startTime;
+  console.log(`\nCache initialization complete:`);
+  console.log(`  Total hashes loaded: ${totalHashes}`);
+  console.log(`  Unique hashes in cache: ${sha256Cache.size}`);
+  console.log(`  Duplicate hashes found: ${duplicateCount}`);
+  console.log(`  Time elapsed: ${elapsedTime}ms`);
+  console.log(`  File watchers active: ${sha256FileWatchers.length}`);
+  console.log('=================================\n');
+};
 
 // Usage information constant
 const USAGE_INFO = `Usage formats:
@@ -134,50 +227,14 @@ const MIME_TYPES = {
   'wasm': 'application/wasm',
 };
 
-// Helper function to lookup SHA-256 hash in sha256sums.txt files
+// Helper function to lookup SHA-256 hash in the cache
 // Returns an object with filename and lookupFile if found, null otherwise
 const lookupSha256Hash = (hash) => {
   // Normalize hash to lowercase for case-insensitive comparison
   const normalizedHash = hash.toLowerCase();
-  const path = require('path');
   
-  for (const lookupFile of SHA256_LOOKUP_FILES) {
-    try {
-      // Read the sha256sums.txt file synchronously
-      const content = fs.readFileSync(lookupFile, 'utf8');
-      const lines = content.split('\n');
-      
-      // Get the directory containing the sha256sums.txt file
-      const lookupDir = path.dirname(lookupFile);
-      
-      for (const line of lines) {
-        // Skip empty lines
-        if (!line.trim()) continue;
-        
-        // Standard sha256sum format: <hash>  <filename>
-        // Hash is 64 characters, followed by two spaces, then filename
-        const match = line.match(/^([a-f0-9]{64})\s+(.+)$/i);
-        if (match) {
-          const fileHash = match[1].toLowerCase();
-          const filename = match[2];
-          
-          if (fileHash === normalizedHash) {
-            // Resolve the filename relative to the sha256sums.txt file's directory
-            // If filename is already absolute, path.resolve will return it as-is
-            return {
-              filename: path.resolve(lookupDir, filename),
-              lookupFile: lookupFile
-            };
-          }
-        }
-      }
-    } catch (err) {
-      // If file doesn't exist or can't be read, continue to next file
-      continue;
-    }
-  }
-  
-  return null;
+  // Simple O(1) cache lookup
+  return sha256Cache.get(normalizedHash) || null;
 };
 
 // Helper function to send invalid URL format error
@@ -522,6 +579,9 @@ const server = http.createServer((req, res) => {
     res.end(stdout);
   });
 });
+// Initialize the SHA-256 cache before starting the server
+initializeSha256Cache();
+
 server.listen(PORT, SERVER_HOST, () => {
   console.log(`Git blob server running on http://${SERVER_HOST}:${PORT}`);
   console.log(USAGE_INFO);
