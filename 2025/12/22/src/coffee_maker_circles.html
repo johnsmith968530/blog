@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concentric Circle Calibration</title>
+    <style>
+        /* General styling for the screen interface */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .controls {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* The printable "page" area */
+        #print-area {
+            background: white;
+            width: 8.5in;
+            height: 11in;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* The scaling container for calibration */
+        #scale-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.1s ease;
+        }
+
+        /* Circle Styling using absolute CM units */
+        .circle {
+            border: 1.5pt solid black;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .outer {
+            width: 12cm;
+            height: 12cm;
+        }
+
+        .inner {
+            width: 6.5cm;
+            height: 6.5cm;
+        }
+
+        /* Print-specific overrides */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .controls {
+                display: none; /* Hide UI when printing */
+            }
+            #print-area {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <h3>Printer Calibration</h3>
+        <label for="scale">Scale Adjustment: </label>
+        <input type="number" id="scale" value="1.000" step="0.001" style="width: 80px;">
+        <p><small>Increase if circles are too small, decrease if too large.<br>
+        (e.g., 1.02 adds 2% to the size)</small></p>
+        <button onclick="window.print()">Print Circles</button>
+    </div>
+
+    <div id="print-area">
+        <div id="scale-container">
+            <div class="circle outer"></div>
+            <div class="circle inner"></div>
+        </div>
+    </div>
+
+    <script>
+        const scaleInput = document.getElementById('scale');
+        const scaleContainer = document.getElementById('scale-container');
+
+        scaleInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            if (val > 0) {
+                scaleContainer.style.transform = `scale(${val})`;
+            }
+        });
+    </script>
+</body>
+</html>
