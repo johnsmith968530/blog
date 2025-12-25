@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const RCS_SOURCE='$Source: /Users/x/Dropbox/2/src/blog/2025/12/25/src/RCS/enviousBlob.js,v $';
-const RCS_DATE='$Date: 2025/12/25 19:15:03 $';
-const RCS_REVISION='$Revision: 4.2 $';
+const RCS_DATE='$Date: 2025/12/25 19:29:56 $';
+const RCS_REVISION='$Revision: 4.3 $';
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -47,6 +47,7 @@ const loadAnnotations = () => {
     console.log(`Loaded annotations from: ${ANNOTATIONS_FILE}`);
     console.log(`${annotationsCache["RCS"]["Date"]}`);
     console.log(`${annotationsCache["RCS"]["Revision"]}`);
+    console.log(`hashes: ${Object.keys(annotationsCache.sha['2']['256']).length}`);
     console.log('==========================\n');
   } catch (error) {
     console.error(`Warning: Failed to load annotations from ${ANNOTATIONS_FILE}: ${error.message}`);
@@ -72,7 +73,7 @@ const sha256Cache = new Map();
 const initializeSha256Cache = () => {
   const startTime = Date.now();
   
-  console.log('=== Initializing SHA-256 cache ===');
+  console.log('=== Initializing SHA-2-256 cache ===');
   
   // Reload the list of lookup files from the sources file
   SHA256_LOOKUP_FILES = loadSha256LookupFiles();
