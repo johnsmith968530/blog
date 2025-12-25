@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const RCS_SOURCE='$Source: /Users/x/Dropbox/2/src/blog/2025/12/25/src/RCS/enviousBlob.js,v $';
-const RCS_DATE='$Date: 2025/12/25 18:55:52 $';
-const RCS_REVISION='$Revision: 4.1 $';
+const RCS_DATE='$Date: 2025/12/25 19:15:03 $';
+const RCS_REVISION='$Revision: 4.2 $';
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -45,6 +45,8 @@ const loadAnnotations = () => {
     annotationsCache = JSON.parse(content);
     console.log('=== Annotations loaded ===');
     console.log(`Loaded annotations from: ${ANNOTATIONS_FILE}`);
+    console.log(`${annotationsCache["RCS"]["Date"]}`);
+    console.log(`${annotationsCache["RCS"]["Revision"]}`);
     console.log('==========================\n');
   } catch (error) {
     console.error(`Warning: Failed to load annotations from ${ANNOTATIONS_FILE}: ${error.message}`);
