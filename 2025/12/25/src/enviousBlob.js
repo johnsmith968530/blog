@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const RCS_SOURCE='$Source: /Users/x/Dropbox/2/src/blog/2025/12/25/src/RCS/enviousBlob.js,v $';
-const RCS_DATE='$Date: 2025/12/25 19:29:56 $';
-const RCS_REVISION='$Revision: 4.3 $';
+const RCS_DATE='$Date: 2025/12/25 19:41:03 $';
+const RCS_REVISION='$Revision: 4.4 $';
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -458,7 +458,7 @@ const server = http.createServer((req, res) => {
     // Log the serving details to console
     console.log('---');
     console.log('Timestamp:', getTimestamp());
-    console.log('SHA-256 Hash:', sha256Hash);
+    console.log('SHA-2-256:', sha256Hash);
     console.log('Lookup File:', lookupFile);
     console.log('Filename:', filename);
     console.log('MIME Type:', charset ? mimeType.split(';')[0].trim() : mimeType);
@@ -482,7 +482,7 @@ const server = http.createServer((req, res) => {
         console.log('---');
         console.log('Timestamp:', getTimestamp());
         console.log('Error: Could not stat file');
-        console.log('SHA-256 Hash:', sha256Hash);
+        console.log('SHA-2-256:', sha256Hash);
         console.log('Filename:', filename);
         console.log('Error message:', statError.message);
         res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -504,7 +504,7 @@ const server = http.createServer((req, res) => {
           console.log('Timestamp:', getTimestamp());
           console.log('Error: Invalid Range header format');
           console.log('Range header:', rangeHeader);
-          console.log('SHA-256 Hash:', sha256Hash);
+          console.log('SHA-2-256:', sha256Hash);
           console.log('Filename:', filename);
           res.writeHead(416, { 
             'Content-Type': 'text/plain',
@@ -524,7 +524,7 @@ const server = http.createServer((req, res) => {
           console.log('Error: Range Not Satisfiable');
           console.log('Range:', `bytes=${start}-${end}`);
           console.log('File size:', fileSize);
-          console.log('SHA-256 Hash:', sha256Hash);
+          console.log('SHA-2-256:', sha256Hash);
           console.log('Filename:', filename);
           res.writeHead(416, { 
             'Content-Type': 'text/plain',
@@ -554,7 +554,7 @@ const server = http.createServer((req, res) => {
           console.log('---');
           console.log('Timestamp:', getTimestamp());
           console.log('Error: Error reading file range');
-          console.log('SHA-256 Hash:', sha256Hash);
+          console.log('SHA-2-256:', sha256Hash);
           console.log('Filename:', filename);
           console.log('Error message:', readError.message);
           if (!res.headersSent) {
@@ -570,7 +570,7 @@ const server = http.createServer((req, res) => {
             console.log('---');
             console.log('Timestamp:', getTimestamp());
             console.log('Error: Could not read file');
-            console.log('SHA-256 Hash:', sha256Hash);
+            console.log('SHA-2-256:', sha256Hash);
             console.log('Filename:', filename);
             console.log('Error message:', error.message);
             res.writeHead(404, { 'Content-Type': 'text/plain' });
