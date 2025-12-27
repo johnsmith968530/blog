@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const RCS_SOURCE='$Source: /Users/x/Dropbox/2/src/blog/2025/12/18/src/RCS/enviousBlob.js,v $';
-const RCS_DATE='$Date: 2025/12/18 22:15:54 $';
-const RCS_REVISION='$Revision: 3.2 $';
+const RCS_DATE='$Date: 2025/12/19 00:05:50 $';
+const RCS_REVISION='$Revision: 3.5 $';
 
 const http = require('http');
 const { execFile } = require('child_process');
@@ -30,6 +30,7 @@ const SHA256_LOOKUP_FILES = [
   '/Volumes/h358/yt-dlp/com/instagram/1/sha256sums.txt',
   '/Volumes/h358/yt-dlp/com/tiktok/3/sha256sums.txt',
   '/Volumes/h358/yt-dlp/com/x/3/sha256sums.txt',
+  '/Volumes/h358/yt-dlp/com/youtube/3/sha256sums.txt',
   '/Volumes/h358/mirror/2/sha256sums.txt',
   '/Users/x/Nextcloud/2/data/sha2_256/mirror_sha256sums.txt',
   '/Users/x/Nextcloud/2/data/sha2_256/Nextcloud_checksums.txt',
@@ -39,6 +40,13 @@ const SHA256_LOOKUP_FILES = [
   '/Users/x/Dropbox/2/Music/sha256sums.txt',
   '/Users/x/Dropbox/2/Travel/sha256sums.txt',
   '/Users/x/Dropbox/3/Art/sha256sums.txt',
+  '/Users/x/Dropbox/3/com/x/sha256sums.txt',
+  '/Users/x/Dropbox/3/Documents/fic/sha256sums.txt',
+  '/Users/x/Dropbox/3/Documents/hw/sha256sums.txt',
+  '/Users/x/Dropbox/3/Documents/loc/sha256sums.txt',
+  '/Users/x/Dropbox/3/Documents/man/sha256sums.txt',
+  '/Users/x/Dropbox/3/Documents/org/sha256sums.txt',
+  '/Users/x/Dropbox/3/Documents/ppl/sha256sums.txt',
   '/Users/x/Dropbox/3/Mirror/sha256sums.txt',
   '/Users/x/Dropbox/3/Videos/sha256sums.txt',
   '/Users/x/Dropbox/Camera Uploads/sha256sums.txt',
