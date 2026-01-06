@@ -1,7 +1,7 @@
 ```text
-$Source: /Users/x/Library/CloudStorage/Dropbox/2/src/blog/RCS/CLAUDE.md,v $
-$Date: 2026/01/06 22:05:57 $
-$Revision: 1.1 $
+$Source: /Users/x/Dropbox/2/src/blog/RCS/CLAUDE.md,v $
+$Date: 2026/01/06 22:11:25 $
+$Revision: 1.2 $
 ```
 
 # CLAUDE.md
@@ -130,12 +130,17 @@ Projects evolve across dates - multiple versions of the same tool exist in diffe
 ### RCS Headers
 Files contain legacy RCS metadata:
 ```text
-$Source: /Users/x/Library/CloudStorage/Dropbox/2/src/blog/RCS/CLAUDE.md,v $
-$Date: 2026/01/06 22:05:57 $
-$Revision: 1.1 $
+$Source: /Users/x/Dropbox/2/src/blog/RCS/CLAUDE.md,v $
+$Date: 2026/01/06 22:11:25 $
+$Revision: 1.2 $
 ```
 
-These are informational only - Git is the active VCS.
+**Important:** RCS and Git operate orthogonally in this repository:
+- RCS files live in `RCS/` directories and should **NOT** be committed to Git
+- The two version control systems track changes independently
+- This allows Git operations (resets, rebases) to not affect RCS history
+- Use `rcs_init` to initialize RCS tracking for new files (initial commit only)
+- Use `ci -l` to check in subsequent changes to RCS-tracked files
 
 ## Development Workflow
 
