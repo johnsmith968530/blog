@@ -1,6 +1,9 @@
 __pycache__/
 .DS_Store
-.Trash/
 .Trash-1000/
+.Trash/
+*.dep
+*.zo
+compiled/
 node_modules/
 RCS/
