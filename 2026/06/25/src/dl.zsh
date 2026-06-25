@@ -1,13 +1,13 @@
 # $Source: /home/x/Dropbox/2/src/blog/2026/06/25/src/RCS/dl.zsh,v $
-# $Date: 2026/06/25 19:49:39 $
-# $Revision: 1.2 $
+# $Date: 2026/06/25 20:44:17 $
+# $Revision: 1.3 $
 
 # In .zshenv:
 #
 #   (( ${+functions[dl]} )) || . "$(envy get global blog root)/2026/06/25/src/dl.zsh"
 #
 
-(( ${+functions[datestamp]} )) || source "$(envy get global blog root)/2026/06/25/src/datestamp.zsh"
+(( ${+functions[datestamp]} )) || . "$(envy get global blog root)/2026/06/25/src/datestamp.zsh"
 
 dl() {
   local dl1

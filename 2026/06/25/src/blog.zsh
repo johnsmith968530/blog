@@ -1,14 +1,14 @@
 # $Source: /home/x/Dropbox/2/src/blog/2026/06/25/src/RCS/blog.zsh,v $
-# $Date: 2026/06/25 20:40:21 $
-# $Revision: 1.4 $
+# $Date: 2026/06/25 20:43:14 $
+# $Revision: 1.5 $
 
 # In .zshenv:
 #
 #   (( ${+functions[blog]} )) || . "$(envy get global blog root)/2026/06/25/src/blog.zsh"
 #
 
-(( ${+functions[datestamp]} )) || source "$(envy get global blog root)/2026/06/25/src/datestamp.zsh"
-(( ${+functions[prependtopathset]} )) || source "$(envy get global blog root)/2026/06/25/src/prependtopathset.zsh"
+(( ${+functions[datestamp]} )) || . "$(envy get global blog root)/2026/06/25/src/datestamp.zsh"
+(( ${+functions[prependtopathset]} )) || . "$(envy get global blog root)/2026/06/25/src/prependtopathset.zsh"
 
 blog() {
   local blog1
