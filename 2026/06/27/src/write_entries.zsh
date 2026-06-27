@@ -1,12 +1,12 @@
 # $Source: /home/x/Dropbox/2/src/blog/2026/06/27/src/RCS/write_entries.zsh,v $
-# $Date: 2026/06/27 07:21:19 $
-# $Revision: 1.2 $
+# $Date: 2026/06/27 19:21:04 $
+# $Revision: 1.3 $
 
 #
 # Usage:
 #
 #   entries=("OpenRouter" "🦊")
-#   . "$(envy get global blog root)/2026/06/27/src/write_entries.zsh"
+#   . "$BLOG_ROOT/2026/06/27/src/write_entries.zsh"
 #
 
 if [ -z "${ZSH_VERSION-}" ]; then
