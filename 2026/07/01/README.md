@@ -1,7 +1,7 @@
 ```text
-$Source$
-$Date$
-$Revision$
+$Source: /home/x/Dropbox/2/src/blog/2026/07/01/RCS/README.md,v $
+$Date: 2026/07/02 06:20:57 $
+$Revision: 1.1 $
 ```
 
 Had some fun today trolling Fable 5 by asking it to come up with a Theory of Group Mind.
