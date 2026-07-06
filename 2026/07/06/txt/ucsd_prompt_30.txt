@@ -1,0 +1,1 @@
+If a = -2 and b = -3, evaluate a b^2 - a / b.

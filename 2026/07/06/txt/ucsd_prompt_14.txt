@@ -1,0 +1,1 @@
+Round the number 374518 to the nearest hundred.
