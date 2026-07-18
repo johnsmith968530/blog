@@ -1,8 +1,13 @@
 ```text
-$Source: /Users/x/Dropbox/2/src/blog/2026/07/18/RCS/README.md,v $
-$Date: 2026/07/18 12:12:48 $
-$Revision: 1.2 $
+$Source: /home/x/Dropbox/2/src/blog/2026/07/18/RCS/README.md,v $
+$Date: 2026/07/18 12:20:20 $
+$Revision: 1.3 $
 ```
+I saw a [cool piece of art](https://substack.com/home/post/p-207246687) by someone ironically named "Enemies of Art", and I thought I'd try making my own version with the help of GPT-5.6.
+* [the prompt](txt/woman_with_violin_in_mirrors.txt)
+* [the image](img/87cb58cacd5fdc43793ec0b331fa670b88f2865f313ba7c244e4ff78748e174f.png)
+
+---
 
 When I first arrived in Berlin (a little less than two weeks ago), there was a coffee shop in the mall that served a breakfast that I liked. Then, one day, I arrived a little after they opened and they didn't have change. The next day, when I arrived at about the same time, I saw a sign that translated as something like "We'll be right back". So, I went to another coffee shop nearby, which turned out to be from the same chain.
 
