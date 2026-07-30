@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Orbital Thrust Simulation</title>
+<style>
+  body { background: #000; margin: 0; overflow: hidden; }
+  canvas { display: block; margin: auto; background: radial-gradient(circle at center, #111 0%, #000 100%); }
+</style>
+</head>
+<body>
+<canvas id="orbit"></canvas>
+
+<script>
+const canvas = document.getElementById("orbit");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// --- Physical constants (arbitrary units)
+const G = 1.0;          // gravitational constant
+const M = 10000;        // planet mass
+const m = 1;            // satellite mass
+const r0 = 200;         // initial orbit radius
+const v0 = Math.sqrt(G * M / r0); // circular orbit speed
+const F_t = 0.01;       // constant tangential thrust
+const dt = 0.05;        // time step
+
+// --- State vectors
+let r = {x: r0, y: 0};        // position
+let v = {x: 0, y: v0};        // velocity
+
+// --- Planet position (center)
+const cx = canvas.width / 2;
+const cy = canvas.height / 2;
+
+// --- Store path
+const path = [];
+
+function update() {
+  // Compute distance and unit vectors
+  const dist = Math.sqrt(r.x*r.x + r.y*r.y);
+  const ux = r.x / dist;
+  const uy = r.y / dist;
+
+  // Gravity acceleration
+  const aGx = -G * M * ux / (dist*dist);
+  const aGy = -G * M * uy / (dist*dist);
+
+  // Tangential direction (perpendicular to radius)
+  const vx = -uy;
+  const vy = ux;
+
+  // Thrust acceleration
+  const aTx = (F_t / m) * vx;
+  const aTy = (F_t / m) * vy;
+
+  // Total acceleration
+  const ax = aGx + aTx;
+  const ay = aGy + aTy;
+
+  // Update velocity and position (Euler integration)
+  v.x += ax * dt;
+  v.y += ay * dt;
+  r.x += v.x * dt;
+  r.y += v.y * dt;
+
+  path.push({x: cx + r.x, y: cy + r.y});
+  if (path.length > 2000) path.shift(); // keep trail manageable
+}
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Draw planet
+  ctx.beginPath();
+  ctx.arc(cx, cy, 10, 0, 2 * Math.PI);
+  ctx.fillStyle = "#3388ff";
+  ctx.fill();
+
+  // Draw orbit trail
+  ctx.beginPath();
+  ctx.strokeStyle = "rgba(255,255,255,0.3)";
+  for (let i = 0; i < path.length; i++) {
+    const p = path[i];
+    if (i === 0) ctx.moveTo(p.x, p.y);
+    else ctx.lineTo(p.x, p.y);
+  }
+  ctx.stroke();
+
+  // Draw satellite
+  ctx.beginPath();
+  ctx.arc(cx + r.x, cy + r.y, 4, 0, 2*Math.PI);
+  ctx.fillStyle = "#ffcc00";
+  ctx.fill();
+}
+
+function animate() {
+  for (let i = 0; i < 10; i++) update(); // faster time progression
+  draw();
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>

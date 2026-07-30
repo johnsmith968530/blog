@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Thrust Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+        canvas {
+            border: 1px solid #333;
+            display: block;
+            margin: 20px auto;
+            background-color: #000;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .info {
+            text-align: center;
+            margin: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Satellite Orbital Thrust Simulation</h1>
+    <div class="info">
+        Blue: Planet | White: Satellite | Green: Thrust Vector | Red: Velocity Vector
+    </div>
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <div class="controls">
+        <button onclick="toggleSimulation()">Play/Pause</button>
+        <button onclick="resetSimulation()">Reset</button>
+    </div>
+    <div class="info">
+        Time: <span id="time">0</span> s | 
+        Orbital Radius: <span id="radius">0</span> km | 
+        Speed: <span id="speed">0</span> km/s
+    </div>
+
+    <script>
+        // Canvas setup
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        
+        // Scale factor for visualization (pixels per km)
+        const SCALE = 0.05;
+        
+        // Physics constants
+        const G = 6.67430e-11; // Gravitational constant (m³/kg/s²)
+        const M = 5.972e24;    // Earth mass (kg)
+        const R0 = 7000e3;     // Initial orbital radius (7,000 km from Earth's center)
+        
+        // Simulation parameters
+        const dt = 0.5;        // Time step (seconds)
+        const thrustAcceleration = 0.5; // Thrust acceleration (m/s²)
+        
+        // Satellite state
+        let satellite = {
+            pos: [R0, 0],           // Initial position [x, y] in meters
+            vel: [0, Math.sqrt(G * M / R0)], // Initial circular orbit velocity
+            trail: []
+        };
+        
+        let time = 0;
+        let isRunning = false;
+        
+        // Vector operations
+        function vecScale(v, s) {
+            return [v[0] * s, v[1] * s];
+        }
+        
+        function vecAdd(v1, v2) {
+            return [v1[0] + v2[0], v1[1] + v2[1]];
+        }
+        
+        function vecSub(v1, v2) {
+            return [v1[0] - v2[0], v1[1] - v2[1]];
+        }
+        
+        function vecMag(v) {
+            return Math.sqrt(v[0] * v[0] + v[1] * v[1]);
+        }
+        
+        function vecNormalize(v) {
+            const mag = vecMag(v);
+            return mag > 0 ? [v[0] / mag, v[1] / mag] : [0, 0];
+        }
+        
+        function vecPerp(v) {
+            // Return vector perpendicular to v (rotated 90° counter-clockwise)
+            return [-v[1], v[0]];
+        }
+        
+        // RK4 integration step
+        function rk4Step(state, dt) {
+            const k1 = calculateDerivatives(state);
+            const k2 = calculateDerivatives({
+                pos: vecAdd(state.pos, vecScale(k1.pos, dt / 2)),
+                vel: vecAdd(state.vel, vecScale(k1.vel, dt / 2))
+            });
+            const k3 = calculateDerivatives({
+                pos: vecAdd(state.pos, vecScale(k2.pos, dt / 2)),
+                vel: vecAdd(state.vel, vecScale(k2.vel, dt / 2))
+            });
+            const k4 = calculateDerivatives({
+                pos: vecAdd(state.pos, vecScale(k3.pos, dt)),
+                vel: vecAdd(state.vel, vecScale(k3.vel, dt))
+            });
+            
+            // Update position and velocity
+            const newPos = vecAdd(state.pos, vecScale(
+                vecAdd(
+                    vecScale(k1.pos, 1),
+                    vecScale(k2.pos, 2),
+                    vecScale(k3.pos, 2),
+                    k4.pos
+                ), dt / 6
+            ));
+            
+            const newVel = vecAdd(state.vel, vecScale(
+                vecAdd(
+                    vecScale(k1.vel, 1),
+                    vecScale(k2.vel, 2),
+                    vecScale(k3.vel, 2),
+                    k4.vel
+                ), dt / 6
+            ));
+            
+            return { pos: newPos, vel: newVel };
+        }
+        
+        // Calculate derivatives (accelerations)
+        function calculateDerivatives(state) {
+            const r = vecMag(state.pos);
+            
+            // Gravitational acceleration: a = -GM/r³ * r_vector
+            const gravAccel = vecScale(state.pos, -G * M / (r * r * r));
+            
+            // Thrust direction: tangential (perpendicular to radius, in direction of motion)
+            // For circular motion, velocity is perpendicular to position
+            // We want thrust in same direction as velocity
+            const thrustDir = vecNormalize(state.vel);
+            const thrustAccel = vecScale(thrustDir, thrustAcceleration);
+            
+            // Total acceleration
+            const totalAccel = vecAdd(gravAccel, thrustAccel);
+            
+            return {
+                pos: state.vel,  // derivative of position is velocity
+                vel: totalAccel  // derivative of velocity is acceleration
+            };
+        }
+        
+        // Main simulation loop
+        function simulate() {
+            if (!isRunning) return;
+            
+            // Store current position for trail
+            satellite.trail.push([...satellite.pos]);
+            if (satellite.trail.length > 5000) {
+                satellite.trail.shift(); // Keep trail length reasonable
+            }
+            
+            // Update satellite state using RK4
+            satellite = rk4Step(satellite, dt);
+            time += dt;
+            
+            // Update info display
+            const r = vecMag(satellite.pos);
+            const v = vecMag(satellite.vel);
+            document.getElementById('time').textContent = time.toFixed(1);
+            document.getElementById('radius').textContent = (r / 1000).toFixed(0);
+            document.getElementById('speed').textContent = (v / 1000).toFixed(2);
+            
+            draw();
+            requestAnimationFrame(simulate);
+        }
+        
+        // Drawing function
+        function draw() {
+            // Clear canvas
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw planet
+            const planetRadius = 30; // Earth representation
+            ctx.fillStyle = '#4169E1';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, planetRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw trail
+            if (satellite.trail.length > 1) {
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                for (let i = 0; i < satellite.trail.length; i++) {
+                    const x = centerX + satellite.trail[i][0] * SCALE;
+                    const y = centerY + satellite.trail[i][1] * SCALE;
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.stroke();
+            }
+            
+            // Draw satellite
+            const satX = centerX + satellite.pos[0] * SCALE;
+            const satY = centerY + satellite.pos[1] * SCALE;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.beginPath();
+            ctx.arc(satX, satY, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw velocity vector
+            const vScale = 0.0005;
+            const vEndX = satX + satellite.vel[0] * vScale;
+            const vEndY = satY + satellite.vel[1] * vScale;
+            ctx.strokeStyle = '#FF0000';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(satX, satY);
+            ctx.lineTo(vEndX, vEndY);
+            ctx.stroke();
+            
+            // Draw thrust vector
+            const thrustDir = vecNormalize(satellite.vel);
+            const thrustEndX = satX + thrustDir[0] * 30;
+            const thrustEndY = satY + thrustDir[1] * 30;
+            ctx.strokeStyle = '#00FF00';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(satX, satY);
+            ctx.lineTo(thrustEndX, thrustEndY);
+            ctx.stroke();
+        }
+        
+        // Control functions
+        function toggleSimulation() {
+            isRunning = !isRunning;
+            if (isRunning) simulate();
+        }
+        
+        function resetSimulation() {
+            isRunning = false;
+            time = 0;
+            satellite = {
+                pos: [R0, 0],
+                vel: [0, Math.sqrt(G * M / R0)],
+                trail: []
+            };
+            draw();
+        }
+        
+        // Initial draw
+        draw();
+    </script>
+</body>
+</html>
