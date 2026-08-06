@@ -2,7 +2,7 @@
 
 *A speculative essay on chess, bounded rationality, and modern AI.*
 
-Based on a [conversation with ChatGPT)(https://chatgpt.com/share/6a74f52a-3fec-83ea-91fd-8548309e2623).
+Based on a [conversation with ChatGPT](https://chatgpt.com/share/6a74f52a-3fec-83ea-91fd-8548309e2623).
 
 ---
 
