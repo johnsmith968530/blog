@@ -1,6 +1,6 @@
 ;; $Source: /home/x/Dropbox/2/src/blog/2026/08/25/RCS/multidigest.rkt,v $
-;; $Date: 2026/08/25 22:00:39 $
-;; $Revision: 1.5 $
+;; $Date: 2026/08/26 01:49:28 $
+;; $Revision: 1.6 $
 
 #lang racket/base
 
