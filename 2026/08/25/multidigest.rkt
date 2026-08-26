@@ -280,12 +280,13 @@
       [else (error 'jsexpr->pretty-json "unsupported value: ~e" v)])))
 
 ;; Add a comment to the cached JSON document for the digest `h`.
-;; The comment is stored under the "comment" key of the multidigest object,
-;; keyed by the current stardate in its canonical 15-digit string form:
+;; The comment is stored under the top-level "comment" key of the JSON
+;; document (a sibling of "multidigest"), keyed by the current stardate in
+;; its canonical 15-digit string form:
 ;;   jsonobject["comment"][<canonical stardate>] = <comment>
 ;; Existing comments (under other stardates) are preserved, and the whole
-;; document is written back to disk atomically. Returns the updated
-;; multidigest object.
+;; document is written back to disk atomically. Returns the multidigest
+;; object (unchanged; the comment lives outside it).
 (define (multidigest-add-comment! h comment)
   (unless (string? comment)
     (raise-argument-error 'multidigest-add-comment! "string?" comment))
@@ -298,19 +299,20 @@
     (error 'multidigest-add-comment!
            "cache file ~a does not contain a valid multidigest object" p))
   (define md (hash-ref doc 'multidigest))
-  (define old-comments (hash-ref md 'comment (hasheq)))
-  (unless (hash? old-comments)
-    (error 'multidigest-add-comment!
-           "\"comment\" field of ~a is not a JSON object" p))
+  (define old-comments (hash-ref doc 'comment #f))
+  (cond
+    [(not old-comments) (set! old-comments (hasheq))]
+    [(not (hash? old-comments))
+     (error 'multidigest-add-comment!
+            "\"comment\" field of ~a is not a JSON object" p)])
   (define key (string->symbol (stardate-canonical (current-stardate))))
-  (define new-md
-    (hash-set md 'comment (hash-set old-comments key comment)))
-  (define new-doc (hash-set doc 'multidigest new-md))
+  (define new-doc
+    (hash-set doc 'comment (hash-set old-comments key comment)))
   (call-with-atomic-output-file
    p
    (lambda (out _path)
      (display (jsexpr->pretty-json new-doc) out)))
-  new-md)
+  md)
 
 ;; ---------------------------------------------------------------------------
 ;; Public entry points
