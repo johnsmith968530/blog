@@ -1,31 +1,40 @@
 #lang racket
 
-;; $Source: /home/x/Dropbox/2/src/blog/2026/06/21/RCS/pl10.rkt,v $
-;; $Date: 2026/06/21 19:20:45 $
-;; $Revision: 1.1 $
+;; $Source: /home/x/Dropbox/2/src/blog/2026/09/09/RCS/blooby-url.rkt,v $
+;; $Date: 2026/09/09 21:39:49 $
+;; $Revision: 1.3 $
 
 ;; Return the base-10 logarithm of a number with specified precision.
 
 (provide blooby-url)
 
 (define extension->mime
-  (hash "jpg"  "image/jpeg"
-        "jpeg" "image/jpeg"
-        "png"  "image/png"
-        "gif"  "image/gif"
-        "webp" "image/webp"
-        "svg"  "image/svg+xml"
-        "mp4"  "video/mp4"
-        "webm" "video/webm"
-        "mp3"  "audio/mpeg"
-        "wav"  "audio/wav"
-        "ogg"  "audio/ogg"
-        "txt"  "text/plain"
-        "html" "text/html"
-        "htm"  "text/html"
+  (hash
+        "bash" "text/plain/utf-8"
         "css"  "text/css"
+        "gif"  "image/gif"
+        "htm"  "text/html/utf-8"
+        "html" "text/html/utf-8"
+        "jpg"  "image/jpeg"
+        "jpeg" "image/jpeg"
         "json" "application/json"
-        "pdf"  "application/pdf"))
+        "md"   "text/plain/utf-8"
+        "mp3"  "audio/mpeg"
+        "mp4"  "video/mp4"
+        "ogg"  "audio/ogg"
+        "pdf"  "application/pdf"
+        "png"  "image/png"
+        "py"   "text/plain/utf-8"
+        "rkt"  "text/plain/utf-8"
+        "sh"   "text/plain/utf-8"
+        "svg"  "image/svg+xml"
+        "txt"  "text/plain/utf-8"
+        "wav"  "audio/wav"
+        "webp" "image/webp"
+        "webm" "video/webm"
+        "zsh"  "text/plain/utf-8"
+  )
+)
 
 (define (blooby-url filename h)
   (define m (regexp-match #rx"[.]([^./]+)$" filename))
