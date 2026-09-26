@@ -1,9 +1,12 @@
 ```text
 $Source: /home/x/Dropbox/2/src/blog/2026/09/26/RCS/README.md,v $
-$Date: 2026/09/26 21:13:21 $
-$Revision: 1.1 $
+$Date: 2026/09/26 21:18:21 $
+$Revision: 1.2 $
 ```
 
+Some `zsh` commands for backing up a Hugging Face repo:
+
+```zsh
 export D0="/run/media/x/h365/co/huggingface"
 export X1="zai-org/GLM-5.3"
 mkdir -p "$D0/$X1"
@@ -26,6 +29,7 @@ cd "$D0"
 borg-backup.py --exact-name --no-excludes "$SLUG1" "$X1"
 
 hf cache verify --fail-on-missing-files --local-dir "$D0/$X1" "$X1"
+```
 
 ```text
 vim: set et ff=unix ft=markdown nocp sts=2 sw=2 ts=2:
