@@ -1,7 +1,7 @@
 ```text
-$Source: /home/x/Dropbox/2/src/blog/2026/09/26/RCS/README.md,v $
-$Date: 2026/09/26 21:18:21 $
-$Revision: 1.2 $
+$Source: /home/x/Dropbox/2/src/blog/2026/09/27/RCS/README.md,v $
+$Date: 2026/09/27 15:43:10 $
+$Revision: 1.1 $
 ```
 
 Some `zsh` commands for backing up a Hugging Face repo (updated from [yesterday](../26)):
