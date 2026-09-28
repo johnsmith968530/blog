@@ -7,13 +7,14 @@ $Revision: 1.1 $
 Some `zsh` commands for backing up a Hugging Face repo (updated from [yesterday](../26)):
 
 ```zsh
-export D0="/run/media/x/h365/co/huggingface"
-export X1="zai-org/GLM-5.3"
-mkdir -p "$D0/$X1"
-hf download --local-dir "$D0/$X1" "$X1" --dry-run
+export HF0="/run/media/x/h365/co/huggingface"
+export X1="datasets/XiaomiMiMo/MiMo-V2.6-RL-oss"
+export X2="${X1//:/꞉}"
+mkdir -p "$HF0/$X2"
+hf download --local-dir "$HF0/$X2" "hf://$X1" --dry-run
 
 export HF_XET_RECONSTRUCT_WRITE_SEQUENTIALLY=1
-hf download --local-dir "$D0/$X1" "$X1"
+hf download --local-dir "$HF0/$X1" "hf://$X1"
 
 slugify_path() {
     local s="$1"
@@ -31,10 +32,10 @@ unslugify_path() {
 
 export SLUG1="🤗⁄$(slugify_path "$X1")★$(stardate)" && echo "$SLUG1"
 
-cd "$D0"
+cd "$HF0"
 borg-backup.py --exact-name --no-excludes "$SLUG1" "$X1"
 
-hf cache verify --fail-on-missing-files --local-dir "$D0/$X1" "$X1"
+hf cache verify --fail-on-missing-files --local-dir "$HF0/$X1" "$X1"
 ```
 
 ```text
