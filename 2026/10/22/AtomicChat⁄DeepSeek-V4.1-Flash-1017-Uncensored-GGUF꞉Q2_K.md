@@ -24,4 +24,11 @@ uv tool upgrade hf
 hf download --local-dir "$HF0/$X2" "hf://$X1" --include "*$Q1/*" --dry-run
 export HF_XET_RECONSTRUCT_WRITE_SEQUENTIALLY=1
 hf download --local-dir "$HF0/$X2" "hf://$X1" --include "*$Q1/*"
+
+export SLUG1="🤗⁄$(slugify_path "$X2")★$(stardate)" && echo "$SLUG1"
+cd "$HF0" && borg-backup.py --exact-name --no-excludes "$SLUG1" "$X2"
+hf cache verify --local-dir "$HF0/$X2" "$X1"
+
+# lms import --copy "$HF0/$X2" # This is too big for my local machine
+rm -rf "$HF0/$X2"
 ```
