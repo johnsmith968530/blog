@@ -1,4 +1,4 @@
-# Some `zsh` commands for backing up a Hugging Face repo (tweaked lightly from [2026-10-22](/home/x/Dropbox/2/src/blog/2026/10/22/AtomicChat⁄DeepSeek-V4.1-Flash-1017-Uncensored-GGUF꞉Q2_K.md)):
+# Some `zsh` commands for backing up a Hugging Face repo (tweaked lightly from the procedure in [2026-10-22](../22/AtomicChat⁄DeepSeek-V4.1-Flash-1017-Uncensored-GGUF꞉Q2_K.md)):
 
 ```zsh
 . "$BLOG_ROOT/2026/10/22/slugify_path.zsh"
